@@ -17,7 +17,8 @@ env:
 	bash env.config
 	bash proxy.config
 
-make $GITHUB_WORKSPACE:	
+make:
+	echo $GITHUB_WORKSPACE	
 	cd op7-r70 && make O=out REAL_CC=$GITHUB_WORKSPACE/buildtool/toolchains/llvm-Snapdragon_LLVM_for_Android_8.0/prebuilt/linux-x86_64/bin/clang CLANG_TRIPLE=aarch64-linux-gnu- blu_spark_defconfig
 	
 j16:	
