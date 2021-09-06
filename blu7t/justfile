@@ -8,20 +8,20 @@ buildtool := '$GITHUB_WORKSPACE/buildtool'
 
 config:
 	unzip -q r70.zip
-	cp Makefile r70/
+	cp Makefile op7-r70/
 
 clean:
-	rm -rf r70
+	rm -rf op7-r70
 
 env:
 	bash env.config
 	bash proxy.config
 
 make:	
-	cd r70 && make O=out REAL_CC=${buildtool}/toolchains/llvm-Snapdragon_LLVM_for_Android_8.0/prebuilt/linux-x86_64/bin/clang CLANG_TRIPLE=aarch64-linux-gnu- blu_spark_defconfig
+	cd op7-r70 && make O=out REAL_CC=${buildtool}/toolchains/llvm-Snapdragon_LLVM_for_Android_8.0/prebuilt/linux-x86_64/bin/clang CLANG_TRIPLE=aarch64-linux-gnu- blu_spark_defconfig
 	
 j16:	
-	cd r70/out && make -j32 REAL_CC=${buildtool}/toolchains/llvm-Snapdragon_LLVM_for_Android_8.0/prebuilt/linux-x86_64/bin/clang CLANG_TRIPLE=aarch64-linux-gnu- 
+	cd op7-r70/out && make -j32 REAL_CC=${buildtool}/toolchains/llvm-Snapdragon_LLVM_for_Android_8.0/prebuilt/linux-x86_64/bin/clang CLANG_TRIPLE=aarch64-linux-gnu- 
 
 image:
 	cp $GITHUB_WORKSPACE/blu7t/r70/out/arch/arm64/boot/Image.gz-dtb $GITHUB_WORKSPACE/blu7t/img/

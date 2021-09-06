@@ -50,7 +50,7 @@ jobs:
         run: |                  
           cd $GITHUB_WORKSPACE/blu7t
           echo "ls blu7t" && ls -l
-          unzip -q r70.zip
+          just c
           echo "ls blu7t" && ls -l
           source env.config
           just make
