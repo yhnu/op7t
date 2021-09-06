@@ -56,4 +56,11 @@ jobs:
           just make
           just j16
           echo "ls img" && ls img
+      - name: Upload Github Assets
+        uses: softprops/action-gh-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          files: $GITHUB_WORKSPACE/blu7t/img/*.img
+          prerelease: ${{ contains(github.ref, '-') }}
 

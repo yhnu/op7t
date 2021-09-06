@@ -24,8 +24,13 @@ make:
 j16:	
 	cd op7-r70/out && make -j32 REAL_CC=$GITHUB_WORKSPACE/buildtool/toolchains/llvm-Snapdragon_LLVM_for_Android_8.0/prebuilt/linux-x86_64/bin/clang CLANG_TRIPLE=aarch64-linux-gnu- 
 
+img:
+	cp $GITHUB_WORKSPACE/blu7t/op7-r70/out/arch/arm64/boot/Image.gz-dtb $GITHUB_WORKSPACE/blu7t/img/
+	cd $GITHUB_WORKSPACE/blu7t/img/ && mv Image.gz-dtb zImage
+	cd $GITHUB_WORKSPACE/blu7t/img/ && abootimg --create boot_${mytime}.img -f bootimg.cfg -k zImage -r initrd.img
+
 image:
-	cp $GITHUB_WORKSPACE/blu7t/r70/out/arch/arm64/boot/Image.gz-dtb $GITHUB_WORKSPACE/blu7t/img/
+	cp $GITHUB_WORKSPACE/blu7t/op7-r70/out/arch/arm64/boot/Image.gz-dtb $GITHUB_WORKSPACE/blu7t/img/
 	cd $GITHUB_WORKSPACE/blu7t/img/ && mv Image.gz-dtb zImage
 	cd $GITHUB_WORKSPACE/blu7t/img/ && abootimg --create boot_${mytime}.img -f bootimg.cfg -k zImage -r initrd.img
 	cd $GITHUB_WORKSPACE/blu7t/img/ && git add -A
