@@ -51,6 +51,7 @@ jobs:
           cd $GITHUB_WORKSPACE/blu7t
           echo "ls blu7t" && ls -l
           just c
+          echo "ls blu7t" && ls -l
           source env.config
           just make
           just j16
