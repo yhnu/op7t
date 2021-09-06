@@ -4,7 +4,7 @@ alias c := config
 alias m := make
 
 mytime := `date +%s`
-buildtool := `pwd/../buildtool`
+buildtool := "$GITHUB_WORKSPACE/buildtool"
 
 config:
 	unzip -q r70.zip
