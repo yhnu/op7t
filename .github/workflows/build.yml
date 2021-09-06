@@ -1,0 +1,58 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-20.04
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      - name: Build Verison
+        id: build_version
+        env:
+          GITHUB_CONTEXT: ${{ toJSON(github) }}
+        run: |
+          echo "$GITHUB_CONTEXT"
+      - name: Install dependencies
+        run: |
+          sudo apt-get install git-core gnupg flex bison build-essential zip curl zlib1g-dev gcc-multilib g++-multilib libc6-dev-i386 libncurses5 libncurses5-dev lib32ncurses5-dev x11proto-core-dev libx11-dev lib32z1-dev libgl1-mesa-dev libxml2-utils xsltproc unzip fontconfig dos2unix libssl-dev
+          cd $GITHUB_WORKSPACE/buildtool && curl -L -O https://github.com/yhnu/op7t/releases/download/v1.0/snapdragon-llvm-8.0.6-linux64.tar.gz
+          cd $GITHUB_WORKSPACE/buildtool && curl -s -L -O https://github.com/yhnu/op7t/releases/download/v1.0/aarch64-linux-android-4.9-uber-master.zip
+          cd $GITHUB_WORKSPACE/blu7t && curl -s -L -O https://github.com/engstk/op7/archive/refs/tags/r70.zip
+          curl -s -L -O https://github.com/casey/just/releases/download/0.10.1/just-0.10.1-x86_64-unknown-linux-musl.tar.gz
+          tar -xf just-0.10.1-x86_64-unknown-linux-musl.tar.gz -C /usr/local/bin
+      - name: DTC Build      
+        env:
+          tag: ${{ github.ref }}
+        run: |                  
+          cd $GITHUB_WORKSPACE/buildtool && just c
+      - name: Kernel Build      
+        env:
+          tag: ${{ github.ref }}
+        run: |                  
+          cd $GITHUB_WORKSPACE/blu7t
+          ls img
+          just c
+          source env.config
+          just make
+          just j16
+          ls img
+

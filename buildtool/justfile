@@ -1,0 +1,24 @@
+set export
+
+
+#alias b := build
+alias c := config
+#alias m := make
+
+config:
+    tar xzf snapdragon-llvm-8.0.6-linux64.tar.gz
+    unzip -q aarch64-linux-android-4.9-uber-master.zip
+    mkdir -p dtc && tar xzf dtc-refs_heads_android10-release.tar.gz -C dtc
+    ls -l
+    cp dtc-lexer.l dtc/ && cp Makefile dtc/
+    cd dtc && make
+    ls -l
+    echo "list dtc"
+    ls -l dtc
+
+clean:
+    rm -rf dtc
+    rm -rf aarch64-linux-android-4.9-uber-master
+    rm -rf build
+    rm -rf toolchains
+    rm README-install
