@@ -55,6 +55,7 @@ jobs:
           source env.config
           just make
           just j16
+          just img
           echo "ls img" && ls img
       - name: Upload Github Assets
         uses: softprops/action-gh-release@v1
