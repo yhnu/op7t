@@ -49,10 +49,10 @@ jobs:
           tag: ${{ github.ref }}
         run: |                  
           cd $GITHUB_WORKSPACE/blu7t
-          ls img
+          echo "ls blu7t" && ls -l
           just c
           source env.config
           just make
           just j16
-          ls img
+          echo "ls img" && ls img
 
