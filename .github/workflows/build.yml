@@ -33,7 +33,7 @@ jobs:
           echo "$GITHUB_CONTEXT"
       - name: Install dependencies
         run: |
-          sudo apt-get install git-core gnupg flex bison build-essential zip curl zlib1g-dev gcc-multilib g++-multilib libc6-dev-i386 libncurses5 libncurses5-dev lib32ncurses5-dev x11proto-core-dev libx11-dev lib32z1-dev libgl1-mesa-dev libxml2-utils xsltproc unzip fontconfig dos2unix libssl-dev
+          sudo apt-get install git-core gnupg flex bison build-essential zip curl zlib1g-dev gcc-multilib g++-multilib libc6-dev-i386 libncurses5 libncurses5-dev lib32ncurses5-dev x11proto-core-dev libx11-dev lib32z1-dev libgl1-mesa-dev libxml2-utils xsltproc unzip fontconfig dos2unix libssl-dev abootimg
           cd $GITHUB_WORKSPACE/buildtool && curl -s -L -O https://github.com/yhnu/op7t/releases/download/v1.0/snapdragon-llvm-8.0.6-linux64.tar.gz
           cd $GITHUB_WORKSPACE/buildtool && curl -s -L -O https://github.com/yhnu/op7t/releases/download/v1.0/aarch64-linux-android-4.9-uber-master.zip
           cd $GITHUB_WORKSPACE/blu7t && curl -s -L -O https://github.com/engstk/op7/archive/refs/tags/r70.zip
