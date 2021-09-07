@@ -67,3 +67,12 @@ just j16
 ```shell
 just image
 ```
+
+## boot.img提取
+
+```shell
+curl -L -O https://github.com/yhnu/op7t/releases/download/v1.0/payload_dumper-win64.zip
+curl -L -O https://otafsc.h2os.com/patch/CHN/OnePlus7THydrogen/OnePlus7THydrogen_14.H.09_009_2001030048/OnePlus7THydrogen_14.H.09_OTA_009_all_2001030048_d935aae55ac.zip
+unzip -q OnePlus7THydrogen_14.H.09_009_2001030048/OnePlus7THydrogen_14.H.09_OTA_009_all_2001030048_d935aae55ac.zip
+# 然后参考payload_dumper的使用说明即可
+```
