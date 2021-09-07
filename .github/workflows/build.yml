@@ -61,5 +61,5 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          files: $GITHUB_WORKSPACE/blu7t/img/boot.img
+          files: blu7t/img/boot.img
           prerelease: ${{ contains(github.ref, '-') }}
