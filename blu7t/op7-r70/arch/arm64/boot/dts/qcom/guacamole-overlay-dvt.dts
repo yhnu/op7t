@@ -1,0 +1,43 @@
+/* Copyright (c) 2017-2018, The Linux Foundation. All rights reserved.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 and
+ * only version 2 as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+
+/dts-v1/;
+/plugin/;
+
+#include <dt-bindings/clock/qcom,gcc-sm8150.h>
+#include <dt-bindings/clock/qcom,camcc-sm8150.h>
+#include <dt-bindings/clock/qcom,rpmh.h>
+#include <dt-bindings/interrupt-controller/arm-gic.h>
+
+#include "sm8150-mtp.dtsi"
+#include "sm8150-mtp-audio-overlay.dtsi"
+
+#include "sm8150-oem.dtsi"
+#include "sm8150-oem-camera-t0.dtsi"
+#include "guacamole.dtsi"
+#include "guacamole_sm8150.dtsi"
+#include "guacamole_t0.dtsi"
+#include "guacamole_evt1.dtsi"
+#include "guacamole_evt2.dtsi"
+#include "guacamole_evt3.dtsi"
+#include "guacamole_dvt.dtsi"
+
+/ {
+	model = "MTP 18821 18831 15";
+	compatible = "qcom,sm8150-mtp", "qcom,sm8150", "qcom,mtp";
+	qcom,board-id = <8 0 >;
+	/*we can add project id to this array,uefi can auto read it,if new project,we add to this array */
+	oem,project-id = <18821 18831>;
+	/*we can add hw id to this array,uefi can auto read it,if new hw,we add to this array  */
+	oem,hw-id = <15>;
+};
+

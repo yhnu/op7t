@@ -1,0 +1,14 @@
+config TRI_STATE_KEY
+        default n
+        tristate "switch Profiles by this triple key"
+        help
+        Say Y here if you want to enable the feature.
+
+config HALL_TRI_STATE_KEY
+        default n
+        tristate "switch Profiles by this triple key"
+        help
+        Say Y here if you want to enable the feature.
+
+source "drivers/tri_state_key/hall_ic/Kconfig"
+source "drivers/tri_state_key/ist_hall_ic/Kconfig"

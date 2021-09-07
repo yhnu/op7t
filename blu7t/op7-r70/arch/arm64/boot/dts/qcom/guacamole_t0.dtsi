@@ -1,0 +1,99 @@
+/*this is for one project different hw version */
+
+/*tp 1.8v power change to gpio119 for T0 hw*/
+&qupv3_se17_i2c {
+	sec-s6sy761@48 {
+		//enable1v8_gpio = <&tlmm 119 0x00>;
+		pinctrl-0 = <&tp_irq_active &tp_rst_active &tp_1v8_t0_active>;
+		pinctrl-1 = <&tp_rst_suspend &tp_1v8_t0_suspend>;
+	};
+};
+
+&qupv3_se17_i2c {
+        st_fts@49 {
+                //enable1v8_gpio = <&tlmm 119 0x00>;
+		pinctrl-0 = <&tp_irq_active &tp_rst_active &tp_1v8_t0_active>;
+		pinctrl-1 = <&tp_rst_suspend &tp_1v8_t0_suspend>;
+        };
+};
+
+&tlmm {
+
+	
+		tp_1v8_t0_active: tp_1v8_t0_active {
+                	mux {
+                        	pins = "gpio119";
+                        	function = "gpio";
+                	};
+                	config {
+                       		pins = "gpio119";
+                        	drive-strength = <8>;
+                        	bias-pull-up;
+               		};
+        	};
+
+		tp_1v8_t0_suspend: tp_1v8_t0_suspend {
+                	mux {
+                        	pins = "gpio119";
+                        	function = "gpio";
+                	};
+                	config {
+                        	pins = "gpio119";
+                        	drive-strength = <8>;
+                        	bias-pull-down;
+                	};
+        	};
+};
+
+/* for Battery & Charging  STRAT */
+&qupv3_se8_i2c {
+	oneplus_fastchg@26{
+		microchip,mcu-en-gpio = <&tlmm 10 0x00>;
+		microchip,usb-sw-2-gpio = <&tlmm 59 0x00>;
+		op,mcl_verion;
+	};
+
+};
+
+&pm8150b_charger {
+	/* for external ship mode suppot */
+	op,stm-ctrl-gpio = <&tlmm 21 0x00>;
+	op,vbus-ctrl-gpio = <&pm8150_gpios 9 GPIO_ACTIVE_LOW>;
+};
+
+/* for Battery & Charging  END */
+
+/* @bsp, usb config START*/
+&usb2_phy0 {
+	qcom,param-override-seq =
+		<0x67 0x6c/*Disconnection voltage +21.56%*/
+		 0x06 0x70/*Pre-emphasis:4x DC voltage level:+6.50%*/
+		 0x28 0x74>;
+};
+
+&extcon_usb1 {
+	status = "disabled";
+};
+
+&usb1 {
+	status = "disabled";
+};
+
+/* @bsp, As QRD-DVT have this config, keep the same config
+ * for ldo18 power suspend
+ */
+&usb_qmp_dp_phy {
+	vdd-supply = <&pm8150_l18>;
+	qcom,vdd-voltage-level = <0 912000 912000>;
+};
+
+&sde_dp {
+	vdda-0p9-supply = <&pm8150_l18>;
+	qcom,phy-supply-entries {
+		qcom,phy-supply-entry@0 {
+			qcom,supply-min-voltage = <880000>;
+			qcom,supply-max-voltage = <912000>;
+		};
+	};
+};
+/* @bsp, usb config END*/

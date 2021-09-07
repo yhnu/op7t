@@ -1,0 +1,602 @@
+/*this is for different project dtsi*/
+/* OnePlus add thermistor, by rio.zhao*/
+&pm8150_adc_tm {
+	skin_therm {
+		reg = <ADC_AMUX_THM1_PU2>;
+		qcom,ratiometric;
+		qcom,hw-settle-time = <200>;
+	};
+
+	pa_therm1 {
+		reg = <ADC_AMUX_THM2_PU2>;
+		qcom,ratiometric;
+		qcom,hw-settle-time = <200>;
+	};
+};
+
+&thermal_zones {
+	skin-therm {
+		polling-delay-passive = <2000>;
+		polling-delay = <0>;
+		thermal-governor = "step_wise";
+		thermal-sensors = <&pm8150_adc_tm ADC_AMUX_THM1_PU2>;
+		trips {
+			freq_config1: freq_config1 {
+				temperature = <52000>;
+				hysteresis = <2000>;
+				type = "passive";
+			};
+			freq_config2: freq_config2 {
+				temperature = <54000>;
+				hysteresis = <2000>;
+				type = "passive";
+			};
+		};
+		cooling-maps {
+			freq_dev0 {
+				trip = <&freq_config1>;
+				cooling-device =
+					<&msm_gpu THERMAL_NO_LIMIT
+						(THERMAL_MAX_LIMIT-1)>;/*345*/
+			};
+			freq_dev1 {
+				trip = <&freq_config1>;
+				cooling-device =
+					<&CPU0 9 9>;/*1036*/
+			};
+			freq_dev2 {
+				trip = <&freq_config1>;
+				cooling-device =
+					<&CPU4 13 13>;/*1056*/
+			};
+			freq_dev3 {
+				trip = <&freq_config1>;
+				cooling-device =
+					<&CPU7 16 16>;/*1171*/
+			};
+			freq_dev4 {
+				trip = <&freq_config2>;
+				cooling-device =
+					<&CPU0 11 11>;/*844*/
+			};
+			freq_dev5 {
+				trip = <&freq_config2>;
+				cooling-device =
+					<&CPU4 THERMAL_MAX_LIMIT
+					THERMAL_MAX_LIMIT>;
+			};
+			freq_dev6 {
+				trip = <&freq_config2>;
+				cooling-device =
+					<&CPU5 THERMAL_MAX_LIMIT
+					THERMAL_MAX_LIMIT>;
+			};
+			freq_dev7 {
+				trip = <&freq_config2>;
+				cooling-device =
+					<&CPU6 THERMAL_MAX_LIMIT
+					THERMAL_MAX_LIMIT>;
+			};
+			freq_dev8 {
+				trip = <&freq_config2>;
+				cooling-device =
+					<&CPU7 THERMAL_MAX_LIMIT
+					THERMAL_MAX_LIMIT>;
+			};
+		};
+	};
+
+	pa-therm1 {
+		polling-delay-passive = <0>;
+		polling-delay = <0>;
+		thermal-governor = "user_space";
+		thermal-sensors = <&pm8150_adc_tm ADC_AMUX_THM2_PU2>;
+		trips {
+			active-config0 {
+				temperature = <125000>;
+				hysteresis = <1000>;
+				type = "passive";
+			};
+		};
+	};
+
+	skin-msm-therm {
+		trips {
+			freq_config3: freq_config3 {
+				temperature = <63000>;
+				hysteresis = <2000>;
+				type = "passive";
+			};
+			freq_config4: freq_config4 {
+				temperature = <65000>;
+				hysteresis = <2000>;
+				type = "passive";
+			};
+		};
+		cooling-maps {
+			freq_dev0 {
+				trip = <&freq_config3>;
+				cooling-device =
+					<&CPU0 2 2>;/*1632 18*/
+			};
+			freq_dev1 {
+				trip = <&freq_config3>;
+				cooling-device =
+					<&CPU4 8 8>;/*1612 17*/
+			};
+			freq_dev2 {
+				trip = <&freq_config3>;
+				cooling-device =
+					<&CPU7 9 9>;/*1920 20*/
+			};
+			freq_dev3 {
+				trip = <&freq_config4>;
+				cooling-device =
+					<&CPU0 4 4>;/*1478*/
+			};
+			freq_dev4 {
+				trip = <&freq_config4>;
+				cooling-device =
+					<&CPU4 11 11>;/*1286*/
+			};
+			freq_dev5 {
+				trip = <&freq_config4>;
+				cooling-device =
+					<&CPU7 13 13>;/*1497*/
+			};
+			freq_dev6 {
+				trip = <&freq_config3>;
+				cooling-device =
+					<&msm_gpu THERMAL_NO_LIMIT
+						(THERMAL_MAX_LIMIT-3)>;/*499*/
+			};
+			freq_dev7 {
+				trip = <&freq_config4>;
+				cooling-device =
+					<&msm_gpu THERMAL_NO_LIMIT
+						(THERMAL_MAX_LIMIT-2)>;/*427*/
+			};
+		};
+	};
+};
+
+/*tp 1.8v power change to gpio119 for T0 hw*/
+&qupv3_se17_i2c {
+	sec-s6sy761@48 {
+		status = "disable";
+	//	enable1v8_gpio = <&tlmm 119 0x00>;
+		pinctrl-0 = <&tp_irq_active &tp_rst_active &tp_1v8_t0_active>;
+                pinctrl-1 = <&tp_rst_suspend &tp_1v8_t0_suspend>;
+	};
+};
+&qupv3_se17_i2c {
+	st_fts@49{
+	status = "disable";
+	};
+};
+&qupv3_se17_i2c {
+	synaptics-s3706@20 {
+		project-name = "18865";
+		//enable1v8_gpio = <&tlmm 119 0x00>;
+		reset-gpio = <&tlmm 80 0x00>;
+		touchpanel,display-coords = <1079 2399>;
+		touchpanel,panel-coords = <1079 2399>;
+		touchpanel,tx-rx-num = <15 34>;
+		module_id_support = <1>;
+		ctrl_base_change = <1>;    /*only change for 18865*/
+		pinctrl-0 = <&tp_irq_active &tp_1v8_t0_active &tp_rst_active>;
+		pinctrl-1 = <&tp_rst_suspend &tp_1v8_t0_suspend>;
+	};
+	/delete-node/ sec-s6sy761@48;
+	/delete-node/ st_fts@49;
+};
+
+&tp_rst_active{
+		mux {
+			pins = "gpio80";
+			function = "gpio";
+		};
+		config {
+			pins = "gpio80";
+			drive-strength = <8>;
+			bias-pull-up;
+		};
+
+};
+&tlmm {
+		tp_1v8_t0_active: tp_1v8_t0_active {
+                        mux {
+                                pins = "gpio119";
+                                function = "gpio";
+                        };
+                        config {
+                                pins = "gpio119";
+                                drive-strength = <8>;
+                                bias-pull-up;
+                        };
+                };
+                tp_1v8_t0_suspend: tp_1v8_t0_suspend {
+                        mux {
+                                pins = "gpio119";
+                                function = "gpio";
+                        };
+                        config {
+                                pins = "gpio119";
+                                drive-strength = <8>;
+                                bias-pull-down;
+                        };
+                };
+};
+
+/* add for hall tri_state_key */
+
+&tri_state_key {
+	compatible = "oneplus,hall_tri_state_key";
+	status = "ok";
+	interrupt-parent = <&tlmm>;
+};
+
+&qupv3_se9_i2c {
+	//qcom,clk-freq-out = <300000>;
+	status = "ok";
+	magnachip@0D {
+		compatible = "tri_key_magnachip,tk_mxm1120,up";
+		reg = <0x0D>;
+		vdd-supply = <&pm8150l_l7>;
+		magnachip,init-interval = <200>;
+		interrupt-parent = <&tlmm>;
+		interrupts = <10 0x02>;
+		dhall,irq-gpio = <&tlmm 10 0x2008>;
+		mxm,id = <1>;
+		pinctrl-names = "uphall_tri_state_key_active";
+		pinctrl-0 = <&uphall_tri_state_key_active>;
+	};
+	magnachip@0C {
+		compatible = "tri_key_magnachip,tk_mxm1120,down";
+		reg = <0x0C>;
+		vdd-supply = <&pm8150l_l7>;
+		magnachip,init-interval = <200>;
+		interrupt-parent = <&tlmm>;
+		interrupts = <36 0x02>;
+		dhall,irq-gpio = <&tlmm 36 0x2008>;
+		mxm,id = <2>;
+		pinctrl-names = "downhall_tri_state_key_active";
+		pinctrl-0 = <&downhall_tri_state_key_active>;
+	};
+};
+
+&qupv3_se9_i2c {
+	status = "ok";
+	ist8801@19 {
+		compatible = "oneplus,hall-ist8801,up";
+		reg = <0x19>;
+		dhall,id = <1>;
+		interrupt-parent = <&tlmm>;
+		dhall,irq-gpio = <&tlmm 10 0x2008>;
+		vdd-supply = <&pm8150l_l7>;
+		pinctrl-names = "ist8801_hall_up_active";
+		pinctrl-0 = <&ist8801_hall_up_active>;
+	};
+	ist8801@18 {
+		compatible = "oneplus,hall-ist8801,down";
+		reg = <0x18>;
+		dhall,id = <2>;
+		interrupt-parent = <&tlmm>;
+		dhall,irq-gpio = <&tlmm 36 0x2008>;
+		vdd-supply = <&pm8150l_l7>;
+		pinctrl-names = "ist8801_hall_down_active";
+		pinctrl-0 = <&ist8801_hall_down_active>;
+	};
+};
+&tlmm {
+	uphall_tri_state_key_active: uphall_tri_state_key_active {
+				     mux {
+					     pins = "gpio10";
+					     function = "gpio";
+				     };
+				     config {
+					     pins = "gpio10";
+					     drive-strength = <2>;
+					     bias-pull-up;
+				     };
+			     };
+
+	downhall_tri_state_key_active: downhall_tri_state_key_active {
+				       mux {
+					       pins = "gpio36";
+					       function = "gpio";
+				       };
+				       config {
+					       pins = "gpio36";
+					       drive-strength = <2>;
+					       bias-pull-up;
+				       };
+			       };
+	ist8801_hall_up_active: ist8801_hall_up_active {
+				       mux {
+					       pins = "gpio10";
+					       function = "gpio";
+				       };
+				       config {
+					       pins = "gpio10";
+					       drive-strength = <2>;
+					       bias-pull-up;
+				       };
+			       };
+	ist8801_hall_down_active: ist8801_hall_down_active {
+				       mux {
+					       pins = "gpio36";
+					       function = "gpio";
+				       };
+				       config {
+					       pins = "gpio36";
+					       drive-strength = <2>;
+					       bias-pull-up;
+				       };
+			       };
+};
+
+/* for Battery & Charging  STRAT */
+&qupv3_se8_i2c {
+	oneplus_fastchg@26{
+		//microchip,mcu-en-gpio = <&tlmm 10 0x00>;
+		microchip,mcu-en-gpio = <&tlmm 134 0x00>;
+		microchip,usb-sw-2-gpio = <&tlmm 59 0x00>;
+		op,mcl_verion;
+		op,3800mAh_4p45_support;
+	};
+};
+
+&pm8150b_charger {
+	/* for external ship mode support */
+	op,stm-ctrl-gpio = <&tlmm 21 0x00>;
+	op,vbus-ctrl-gpio = <&pm8150_gpios 9 GPIO_ACTIVE_LOW>;
+
+	/*not need vph sel 300mv for LCD DCDC mode switch issue*/
+	vph-sel-disable;
+
+	/* ibatmax setting for different temp regions */
+	ibatmax-little-cold-ma = <320>;
+	ibatmax-little-cool-thr-ma = <1750>;
+	ibatmax-cool-thr-ma = <1000>;
+	ibatmax-cool-ma = <1450>;
+	ibatmax-warm-ma = <1050>;
+	op,little_cold_term_current = <250>;
+
+	/* for usb connecter temperature check */
+	op,normal-check-interval-period = <300>;
+	op,fast-check-interval-period = <50>;
+	op,fast-check-threshold-temp = <33>;
+	op,high-temp-short-check-timeout = <1500>;
+	op,first-protect-connecter-temp = <60>;
+	op,second-protect-connecter-temp = <45>;
+	op,second-protect-interval-temp = <12>;
+	op,third-protect-rise-rate = <3>;
+	op,third-protect-loop-temp = <40>;
+	op,third-protect-interval-temp = <8>;
+	op,third-protect-base-temp = <20>;
+
+	/* for charge current&voltage curve optimize */
+	op,fv-offset-voltage-mv = <50>;
+
+	/* skin thermal temp adjust the dash current */
+	op,skin-thermal-high-threshold = <37>;
+	op,skin-thermal-normal-threshold = <34>;
+	op,enable-dash-current-dynamic-adjust;
+
+	/* for 4p45v not charge full issue add sw full count numb */
+	op,full-count-sw-numb = <2>;
+
+	io-channels = <&pm8150b_vadc ADC_MID_CHG_DIV6>,
+				<&pm8150b_vadc ADC_USB_IN_V_16>,
+				<&pm8150b_vadc ADC_USB_IN_I>,
+				<&pm8150b_vadc ADC_CHG_TEMP>,
+				<&pm8150b_vadc ADC_AMUX_THM4_PU1>,
+				<&pm8150_vadc ADC_AMUX_THM1_PU2>,
+				<&pm8150b_vadc ADC_VPH_PWR>,
+				<&pm8150b_vadc ADC_SBUx>;
+	io-channel-names = "mid_voltage",
+				"usb_in_voltage",
+				"usb_in_current",
+				"chg_temp",
+				"gpio1_voltage",
+				"skin_therm",
+				"vph_voltage",
+				"sbux_res";
+};
+
+&mtp_batterydata {
+	#include "OP-fg-batterydata-3800mah.dtsi"
+};
+/* for Battery & Charging  END */
+
+/* @bsp, USB oem config START*/
+&usb2_phy0 {
+	qcom,param-override-seq =
+		<0x67 0x6c/*Disconnection voltage +21.56%*/
+		 0x09 0x70/*Pre-emphasis:4x DC voltage level:+13.30%*/
+		 0x28 0x74>;
+};
+
+&extcon_usb1 {
+	status = "disabled";
+};
+
+&usb1 {
+	status = "disabled";
+};
+/* @bsp, USB oem config END*/
+
+&motor_pl {
+	status = "disabled";
+};
+
+&oem_rf_cable {
+	rf,cable-gpio-0 = <&tlmm 121 0>;
+};
+
+&rf_cable_ant0_active {
+	mux {
+		pins = "gpio121";
+		function = "gpio";
+	};
+	config {
+		pins = "gpio121";
+		drive-strength = <2>;
+		bias-pull-up;
+	};
+};
+
+&pm8150_gpios {
+	rf_pm8150_cable_ant1: rf_pm8150_cable_ant1 {
+		pins = "gpio4";
+		function = "normal";
+		power-source = <0>;
+		bias-pull-up;
+		input-enable;
+	};
+    ab_id1 {
+        ab_id1_default: ab_id1_default {
+            pins = "gpio1";
+            function = "normal";
+            input-enable;
+            bias-pull-up;
+            power-source = <0>;
+            qcom,drive-strength = <3>; /* low */
+        };
+        ab_id1_sleep: ab_id1_sleep {
+            pins = "gpio1";
+            function = "normal";
+            input-enable;
+            bias-disable;
+            power-source = <0>;
+            qcom,drive-strength = <3>; /* low */
+        };
+
+    };
+};
+&pm8150b_gpios {
+    haptics_boost {
+        haptics_boost_default: haptics_boost_default {
+            pins = "gpio5";
+            function = "normal";
+            output-enable;
+            input-disable;
+            bias-disable;
+            qcom,drive-strength = <3>; /* high */
+            power-source = <0>; /* VPH_PWR */
+        };
+    };
+    ab_id2 {
+        ab_id2_default: ab_id2_default {
+            pins = "gpio2";
+            function = "normal";
+            input-enable;
+            bias-pull-up;
+            power-source = <0>;
+            qcom,drive-strength = <3>; /* low */
+        };
+        ab_id2_sleep: ab_id2_sleep {
+            pins = "gpio2";
+            function = "normal";
+            input-enable;
+            bias-disable;
+            power-source = <0>;
+            qcom,drive-strength = <3>; /* low */
+        };
+
+    };
+};
+
+&oem_aboard_check {
+    pinctrl-names = "oem_aboard_active","oem_aboard_sleep";
+    pinctrl-0 = <&ab_id1_default &ab_id2_default>;
+    pinctrl-1 = <&ab_id1_sleep &ab_id2_sleep>;
+};
+
+&vendor  {
+	step_motor {
+		status = "disabled";
+	};
+};
+
+&pm8150b_gpios {
+	haptics_boost {
+		haptics_boost_default: haptics_boost_default {
+			pins = "gpio5";
+			function = "normal";
+			output-enable;
+			input-disable;
+			bias-disable;
+			qcom,drive-strength = <3>; /* high */
+			power-source = <0>; /* VPH_PWR */
+		};
+	};
+};
+
+&vendor {
+	haptics_boost_vreg: haptics_boost_vreg {
+		compatible = "regulator-fixed";
+		regulator-name = "haptics_boost";
+		gpio = <&pm8150b_gpios 5 GPIO_ACTIVE_HIGH>;
+		enable-active-high;
+		regulator-enable-ramp-delay = <300>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&haptics_boost_default>;
+		status = "ok";
+	};
+};
+&pm8150b_haptics {
+	status = "ok";
+	vdd-supply = <&haptics_boost_vreg>;
+	wf_6 {
+		/* WEAK */
+		qcom,effect-id = <6>;
+		qcom,wf-vmax-mv = <2500>;
+		qcom,wf-pattern = [7e 7e 7e fe fe];
+		qcom,wf-play-rate-us = <6667>;
+		qcom,wf-brake-pattern = [00 00 00 00];
+		qcom,lra-auto-resonance-disable;
+	};
+	wf_7 {
+		/* MIDDLE */
+		qcom,effect-id = <7>;
+		qcom,wf-vmax-mv = <2500>;
+		qcom,wf-pattern = [7e 7e 7e 7e fe fe fe];
+		qcom,wf-play-rate-us = <6667>;
+		qcom,wf-brake-pattern = [00 00 00 00];
+		qcom,lra-auto-resonance-disable;
+	};
+	wf_8 {
+		/* STRONG */
+		qcom,effect-id = <8>;
+		qcom,wf-vmax-mv = <2500>;
+		qcom,wf-pattern = [7e 7e 7e 7e 7e fe fe fe];
+		qcom,wf-play-rate-us = <6667>;
+		qcom,wf-brake-pattern = [00 00 00 00];
+		qcom,lra-auto-resonance-disable;
+	};
+};
+
+&wdog{
+	qcom,bark-time = <15000>;
+};
+
+&motor_pl {
+	status = "disabled";
+};
+
+&qupv3_se1_i2c {
+    magnachip@0C {
+        status = "disabled";
+    };
+
+   magnachip@0D {
+	    status = "disabled";
+    };
+};
+
+&aw8697_haptic {
+	op,count_go;
+};
+

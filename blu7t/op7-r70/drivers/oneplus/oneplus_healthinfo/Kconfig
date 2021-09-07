@@ -1,0 +1,5 @@
+config ONEPLUS_HEALTHINFO
+	default n
+	bool "config oneplus healthinfo"
+	help
+	  define this config to init oneplus healthinfo.

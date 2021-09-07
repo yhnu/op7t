@@ -1,0 +1,57 @@
+/*this is for one project different hw version */
+&bq27541_battery {
+	op,bat-4p45v;
+};
+
+&pm8150b_charger {
+	qcom,fcc-max-ua = <2000000>;
+	qcom,usb-icl-ua = <1800000>;
+	/* ibatmax setting for different temp regions */
+	ibatmax-little-cold-ma = <350>;
+	ibatmax-cool-ma = <1900>;
+	ibatmax-little-cool-ma = <2000>;
+	ibatmax-pre-normal-ma = <2000>;
+	ibatmax-normal-ma = <2000>;
+	ibatmax-warm-ma = <1100>;
+	ibatmax-little-cool-thr-ma = <1900>;
+	ibatmax-cool-thr-ma = <1100>;
+	/* vbatmax setting for different temp regions */
+	vbatmax-little-cold-mv = <3975>;
+	vbatmax-cool-mv = <4435>;
+	vbatmax-little-cool-mv = <4435>;
+	vbatmax-pre-normal-mv = <4435>;
+	vbatmax-normal-mv = <4435>;
+	vbatmax-warm-mv = <4130>;
+	little-cool-vbat-thr-mv = <4180>;
+	cool-vbat-thr-mv = <4180>;
+	/* vbatdet setting for different temp regions */
+	vbatdet-little-cold-mv = <3675>;
+	vbatdet-cool-mv = <4235>;
+	vbatdet-little-cool-mv = <4335>;
+	vbatdet-pre-normal-mv = <4335>;
+	vbatdet-normal-mv = <4335>;
+	vbatdet-warm-mv = <4030>;
+	/* temp region settings */
+	cold-bat-decidegc = <20>;
+	little-cold-bat-decidegc = <0>;
+	cool-bat-decidegc = <50>;
+	little-cool-bat-decidegc = <120>;
+	pre-normal-bat-decidegc = <160>;
+	warm-bat-decidegc = <450>;
+	hot-bat-decidegc = <500>;
+	qcom,otg-cl-ua = <1500000>;
+	op,sw-iterm-ma = <215>;
+	op,sw-check-full-enable;
+
+	/*ffc temp region*/
+	ffc-pre-normal-decidegc = <120>;
+	ffc-normal-decidegc = <350>;
+	ffc-warm-decidegc = <400>;
+	ffc-normal-fcc-ma = <900>;
+	ffc-warm-fcc-ma = <950>;
+	ffc-normal-cutoff-ma = <720>;
+	ffc-warm-cutoff-ma = <800>;
+	ffc-full-vbat-mv = <4480>;
+
+	/delete-property/ qcom,sw-jeita-enable;
+};

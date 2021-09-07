@@ -1,0 +1,130 @@
+/*this is for sm8150 version */
+
+/* george@bsp, add for 19861 tri_state_key */
+&tri_state_key {
+	tristate,gpio_key3 = <&tlmm 61 0x00>;
+	pinctrl-0 = <&hotdogg_tri_state_key_active>;
+	pinctrl-1 = <&hotdogg_tri_state_key_suspend>;
+};
+
+&tlmm {
+	hotdogg_tri_state_key_active: hotdogg_tri_state_key_active {
+		mux {
+			pins = "gpio61", "gpio134", "gpio27";
+			function = "gpio";
+		};
+		config {
+			pins = "gpio61", "gpio134", "gpio27";
+			drive-strength = <2>;
+			bias-disable;
+		};
+	};
+
+	hotdogg_tri_state_key_suspend: hotdogg_tri_state_key_suspend {
+		mux {
+			pins = "gpio61", "gpio134", "gpio27";
+			function = "gpio";
+		};
+		config {
+			pins = "gpio61", "gpio134", "gpio27";
+			drive-strength = <2>;
+			bias-disable;
+		};
+	};
+};
+
+&qupv3_se17_i2c {
+	sec-s6sy761@48 {
+		project-name = "19861";
+		module_id_support = <1>;
+	};
+};
+
+&fingerprint_detect {
+	oneplus,goodix9608;
+};
+
+/* @bsp, 2019/5/31 usb config START*/
+&usb2_phy0 {
+	qcom,param-override-seq =
+		<0x67 0x6c/*Disconnection voltage +21.56%*/
+		 0x06 0x70/*Pre-emphasis:4x DC voltage level:+6.50%*/
+		 0x28 0x74>;
+};
+
+&extcon_usb1 {
+	status = "disabled";
+};
+
+&usb1 {
+	status = "disabled";
+};
+/* @bsp, 2019/5/31 usb config END*/
+
+
+// tom.cheng@BSP, 2019/05/30, Remapping 4M memory increase of adsp begain for SM8150P+SDX55M
+&pil_adsp_mem {
+	reg = <0x0 0x8be00000 0x0 0x1e00000>;
+};
+
+&pil_modem_mem {
+	reg = <0x0 0x8dc00000 0x0 0x3200000>;
+};
+
+&pil_video_mem {
+	reg = <0x0 0x90e00000 0x0 0x500000>;
+};
+
+&pil_slpi_mem {
+	reg = <0x0 0x91300000 0x0 0x1500000>;
+};
+
+&pil_ipa_fw_mem {
+	reg = <0x0 0x92800000 0x0 0x10000>;
+};
+
+&pil_ipa_gsi_mem {
+	reg = <0x0 0x92810000 0x0 0xa000>;
+};
+
+&pil_gpu_mem {
+	reg = <0x0 0x9281a000 0x0 0x2000>;
+};
+
+&pil_spss_mem {
+	reg = <0x0 0x92900000 0x0 0x100000>;
+};
+
+&pil_cdsp_mem {
+	reg = <0x0 0x92a00000 0x0 0x1400000>;
+};
+// tom.cheng@BSP, 2019/05/30, Remapping 4M memory increase of adsp begain for SM8150P+SDX55M end
+
+// tom.cheng@BSP, 2019/06/10, Setup imem for SDX55 dump via QPST
+&soc {
+	qcom,msm-imem@146bf000 {
+		download_mode@0{
+			compatible = "qcom,msm-imem-download_mode";
+			reg = <0x658 4>;
+		};
+	};
+};
+/*sdx55 support get ssr reason feature*/
+&mdm3 {
+	oem,esoc_ssr_reason_feature_enable;
+};
+
+&oem_rf_cable {
+	oem,sdx5x_uevent_feature_enable;
+};
+
+&pm8150b_charger {
+/*LCD DCDC not support PSM mode so no PSM ripple issue*/
+	lcd-psm-not-support;
+};
+&qupv3_se8_i2c {
+	oneplus_fastchg@26{
+		op,4085mAh_4p45_support;
+	};
+};
+

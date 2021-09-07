@@ -1,0 +1,59 @@
+config TOUCHPANEL_MTK_PLATFORM
+	bool "OP platform tp module used"
+	help
+	  Say Y here if you have mtk-platform.
+
+config TOUCHPANEL_ONEPLUS
+	bool "ONEPLUS tp module"
+	help
+	  Say Y here if you have touchscreen module.
+
+config TOUCHPANEL_SYNAPTICS
+#	default y
+	bool "TP Synaptics_IC enable or not for OP"
+	---help---
+	say Y to enable driver for Touchpanel using Synaptics_IC
+
+config TOUCHPANEL_FOCAL
+#	default y
+	bool "TP Synaptics_IC enable or not for OP"
+	---help---
+	say Y to enable driver for Touchpanel using FOCALTECK_IC
+
+config TOUCHPANEL_GOODIX
+#	default y
+	bool "TP Synaptics_IC enable or not for OP"
+	---help---
+	say Y to enable driver for Touchpanel using GOODIX_IC
+
+config TOUCHPANEL_NOVA
+#	default y
+	bool "TP Nova_IC enable or not for OP"
+	---help---
+	say Y to enable driver for Touchpanel using NOVATECK_IC
+config TOUCHPANEL_HIMAX
+#	default y
+	bool "TP HIMAX_IC enable or not for OP"
+	---help---
+	say Y to enable driver for Touchpanel using HIMAX_IC
+
+config TOUCHPANEL_SAMSUNG
+#	default y
+	bool "TP samsung IC enable or not for OP"
+	---help---
+	say Y to enable driver for Touchpanel using samsung IC
+
+config TOUCHPANEL_ST
+#	default y
+	bool "TP st IC enable or not for OP"
+	---help---
+	say Y to enable driver for Touchpanel using st IC
+
+source "drivers/input/oneplus_touchscreen/util_interface/Kconfig"
+
+if TOUCHPANEL_SYNAPTICS
+source "drivers/input/oneplus_touchscreen/Synaptics/Kconfig"
+endif
+if TOUCHPANEL_SAMSUNG
+source "drivers/input/oneplus_touchscreen/Samsung/Kconfig"
+endif

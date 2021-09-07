@@ -1,0 +1,23 @@
+Tfa98xx device
+
+Required Properties
+- compatible		Must be "compatible = "nxp,tfa98xx".
+
+Example:
+
+
+	&qupv3_se4_i2c {
+	tfa98xx_right: tfa98xx_right@34 {
+			       compatible = "nxp,tfa98xx";
+			       reg = <0x34>;
+			       reset-gpio = <&tlmm 37 0>;
+			       status = "ok";
+		       };
+
+	tfa98xx_left: tfa98xx_left@35 {
+			      compatible = "nxp,tfa98xx";
+			      reg = <0x35>;
+			      reset-gpio = <&tlmm 37 0>;
+			      status = "ok";
+		      };
+	};

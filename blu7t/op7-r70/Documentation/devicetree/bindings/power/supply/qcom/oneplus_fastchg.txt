@@ -1,0 +1,42 @@
+* Fast charge control
+
+Required properties:
+ - compatible		      : "microchip,oneplus_fastchg"
+ - reg			      : Device address
+ - interrupts		      : IRQ specifier
+
+
+Optional properties:
+ - microchip,mcu-en-gpio		  : enable or reset the mcu
+ - microchip,usb-sw-1-gpio	      : fast charge switch 1 control
+ - microchip,usb-sw-2-gpio	      : fast charge switch 2 control
+ - microchip,ap-clk				: gpio work for clk
+ - microchip,ap-data			: gpio work for data
+
+Example:
+
+&qupv3_se16_i2c {
+	oneplus_fastchg@26{
+		status = "ok";
+		compatible = "microchip,oneplus_fastchg";
+		reg = <0x26>;
+		microchip,mcu-en-gpio = <&tlmm 10 0x00>;
+		microchip,usb-sw-1-gpio = <&tlmm 50 0x00>;
+		microchip,usb-sw-2-gpio = <&tlmm 82 0x00>;
+		microchip,ap-clk = <&tlmm 8 0x00>;
+		microchip,ap-data = <&tlmm 9 0x00>;
+
+		pinctrl-names = "mux_fastchg_active",
+		"mux_fastchg_suspend",
+		"mcu_data_active",
+		"mcu_data_suspend";
+		pinctrl-0 = <&fastchg_active
+		&usb_sw_active
+		&ap_clk_active>;
+		pinctrl-1 = <&usb_sw_suspend
+		&fastchg_suspend
+		&ap_clk_suspend>;
+		pinctrl-2 =<&ap_data_active>;
+		pinctrl-3 =<&ap_data_suspend>;
+	}
+}

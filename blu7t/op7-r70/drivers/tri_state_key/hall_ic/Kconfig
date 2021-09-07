@@ -1,0 +1,5 @@
+config SENSOR_HALL_MXM1120
+	tristate "digital hall m1120 Controler"
+	default n
+	help
+		Say Y here to enable m1120.

@@ -1,0 +1,12 @@
+#
+# Synaptics TCM touchscreen driver configuration
+#
+config TOUCHPANEL_SYNAPTICS_TCM
+	bool "Synaptics TCM touchscreen"
+	default n
+	help
+	  Say Y here if you have a Synaptics TCM touchscreen connected
+	  to your system.
+
+	  If unsure, say N.
+

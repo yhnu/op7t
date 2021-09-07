@@ -1,0 +1,5 @@
+config SENSOR_HALL_IST8801
+	tristate "digital hall ist8801 Controler"
+	default n
+	help
+		Say Y here to enable ist8801.

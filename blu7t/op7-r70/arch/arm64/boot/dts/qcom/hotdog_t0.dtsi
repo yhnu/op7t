@@ -1,0 +1,14 @@
+/*this is for one project different hw version */
+&pm8150b_charger {
+	qcom,fcc-max-ua = <2000000>;
+	qcom,usb-icl-ua = <1800000>;
+	/* ibatmax setting for different temp regions */
+	ibatmax-little-cold-ma = <350>;
+	ibatmax-cool-ma = <1900>;
+	ibatmax-little-cool-ma = <2000>;
+	ibatmax-pre-normal-ma = <2000>;
+	ibatmax-normal-ma = <2000>;
+	ibatmax-warm-ma = <1100>;
+	ibatmax-little-cool-thr-ma = <1900>;
+	ibatmax-cool-thr-ma = <1100>;
+};
