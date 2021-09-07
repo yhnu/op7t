@@ -8,7 +8,7 @@ on:
   push:
     tags:
       - v*
-    #branches: [ main ]  
+    #branches: [ main ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -39,15 +39,11 @@ jobs:
           cd $GITHUB_WORKSPACE/blu7t && curl -s -L -O https://github.com/engstk/op7/archive/refs/tags/r70.zip
           curl -s -L -O https://github.com/casey/just/releases/download/0.10.1/just-0.10.1-x86_64-unknown-linux-musl.tar.gz
           tar -xf just-0.10.1-x86_64-unknown-linux-musl.tar.gz -C /usr/local/bin
-      - name: DTC Build      
-        env:
-          tag: ${{ github.ref }}
-        run: |                  
+      - name: DTC Build
+        run: |
           cd $GITHUB_WORKSPACE/buildtool && just c
-      - name: Kernel Build      
-        env:
-          tag: ${{ github.ref }}
-        run: |                  
+      - name: Kernel Build        
+        run: |
           cd $GITHUB_WORKSPACE/blu7t
           echo "ls blu7t" && ls -l
           just c
@@ -56,7 +52,10 @@ jobs:
           just make
           just j16
           just img
-          echo "ls img" && ls img
+      - name: List Img        
+        run: |
+          cd $GITHUB_WORKSPACE
+          echo "ls workspace" && ls -l
       - name: Upload Github Assets
         uses: softprops/action-gh-release@v1
         env:
@@ -64,4 +63,3 @@ jobs:
         with:
           files: $GITHUB_WORKSPACE/blu7t/img/boot.img
           prerelease: ${{ contains(github.ref, '-') }}
-
