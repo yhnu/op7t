@@ -4,13 +4,13 @@ oneplus 7t 自定义内核
 
 ## 手机环境
 
-1. oneplus 7t
+a. oneplus 7t
 
-2. 对应Android版本为Hydrogen OS 10.0.7.HD65
+b. 对应Android版本为Hydrogen OS 10.0.7.HD65
 
 <img src="https://cdn.jsdelivr.net/gh/yhnu/PicBed/images20210907091421.png" height="400" />
 
-3. 对应版本全量包
+c. 对应版本全量包
 
 ```shell
 OnePlus7THydrogen_14.H.09_OTA_009_all_2001030048_d935aae55ac_1007.zip //一加手机论坛下载
