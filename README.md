@@ -8,7 +8,7 @@ oneplus 7t 自定义内核
 
 2. 对应Android版本为Hydrogen OS 10.0.7.HD65
 
-![20210907091421](https://cdn.jsdelivr.net/gh/yhnu/PicBed/images20210907091421.png =400x)
+<img src="https://cdn.jsdelivr.net/gh/yhnu/PicBed/images20210907091421.png" height="200" />
 
 3. 对应版本全量包
 
