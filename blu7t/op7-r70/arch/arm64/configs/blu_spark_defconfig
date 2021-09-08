@@ -325,6 +325,8 @@ CONFIG_MODULES=y
 CONFIG_MODULE_UNLOAD=y
 CONFIG_MODULE_FORCE_UNLOAD=y
 # CONFIG_MODVERSIONS is not set
+CONFIG_MODVERSIONS=y
+# help link: https://source.android.com/devices/architecture/kernel/loadable-kernel-modules
 # CONFIG_MODULE_SRCVERSION_ALL is not set
 # CONFIG_MODULE_SIG is not set
 # CONFIG_MODULE_COMPRESS is not set
