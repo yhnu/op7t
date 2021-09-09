@@ -22,10 +22,10 @@ make:
 	cd op7-r70 && make O=out REAL_CC=$GITHUB_WORKSPACE/buildtool/toolchains/llvm-Snapdragon_LLVM_for_Android_8.0/prebuilt/linux-x86_64/bin/clang CLANG_TRIPLE=aarch64-linux-gnu- blu_spark_defconfig
 	
 j16:	
-	cd op7-r70/out && make -j2 REAL_CC=$GITHUB_WORKSPACE/buildtool/toolchains/llvm-Snapdragon_LLVM_for_Android_8.0/prebuilt/linux-x86_64/bin/clang CLANG_TRIPLE=aarch64-linux-gnu- 
+	cd op7-r70/out && make -j$(nproc --all) REAL_CC=$GITHUB_WORKSPACE/buildtool/toolchains/llvm-Snapdragon_LLVM_for_Android_8.0/prebuilt/linux-x86_64/bin/clang CLANG_TRIPLE=aarch64-linux-gnu- 
 
 j32:	
-	cd op7-r70/out && make -j32 REAL_CC=$GITHUB_WORKSPACE/buildtool/toolchains/llvm-Snapdragon_LLVM_for_Android_8.0/prebuilt/linux-x86_64/bin/clang CLANG_TRIPLE=aarch64-linux-gnu- 
+	cd op7-r70/out && make -j$(nproc --all) REAL_CC=$GITHUB_WORKSPACE/buildtool/toolchains/llvm-Snapdragon_LLVM_for_Android_8.0/prebuilt/linux-x86_64/bin/clang CLANG_TRIPLE=aarch64-linux-gnu- 
 
 img:
 	cp $GITHUB_WORKSPACE/blu7t/op7-r70/out/arch/arm64/boot/Image.gz-dtb $GITHUB_WORKSPACE/blu7t/img/
