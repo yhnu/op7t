@@ -99,6 +99,44 @@ a. 修改内核源码绕过反调试检测
 
 参考文章:
 
-https://mp.weixin.qq.com/s?__biz=Mzg5MzU3NzkxOQ==&mid=2247483992&idx=4&sn=1137e15288c238668fb39462e295d82c&chksm=c02dfd88f75a749e38c772d45d620a615d77d21b2f3c729ecd767a13a4c674204fe6120beea2&scene=178&cur_album_id=1799542483832324102#rd
+[安卓10源码学习开发定制(6)修改内核源码绕过反调试检测](https://mp.weixin.qq.com/s?__biz=Mzg5MzU3NzkxOQ==&mid=2247483992&idx=4&sn=1137e15288c238668fb39462e295d82c&chksm=c02dfd88f75a749e38c772d45d620a615d77d21b2f3c729ecd767a13a4c674204fe6120beea2&scene=178&cur_album_id=1799542483832324102#rd)
 
+2021年9月10日 08:56:45
+
+a. 编写hellomod模块
+
+```Makefile
+# Code wrire 	: yhnu
+# code date 	: 2021年9月10日 09:46:05
+# e-mail	: buutuud@gmail.com
+#
+# THis Makefile is a demo only for ARM-architecture
+#
+
+MODULE_NAME := hello
+
+ifneq ($(KERNELRELEASE),)
+
+	obj-m := hello.o
+
+else
+	CROSS_COMPILE := /share/op7t/buildtool/aarch64-linux-android-4.9-uber-master/bin/aarch64-linux-android-
+	#CC = CROSS_COMPILE	
+	#KERNELDIR ?= /lib/modules/$(shell uname -r)/build
+	PWD	:=$(shell pwd)
+	KDIR := /share/op7t/blu7t/op7-r70/out
+
+modules:
+	make -C $(KDIR) REAL_CC=$(GITHUB_WORKSPACE)/buildtool/toolchains/llvm-Snapdragon_LLVM_for_Android_8.0/prebuilt/linux-x86_64/bin/clang CROSS_COMPILE=/share/op7t/buildtool/aarch64-linux-android-4.9-uber-master/bin/aarch64-linux-android- CLANG_TRIPLE=aarch64-linux-gnu- ARCH=arm64 M=$(PWD) modules CONFIG_MODULE_UNLOAD=y CONFIG_RETPOLINE=y
+
+clean:
+	rm -rf *.o *.order *.symvers *.ko *.mod* .*.cmd .*.*.cmd .*.*.*.cmd
+	@rm -fr .tmp_versions Module.symvers modules.order
+endif
+```
+b. 注意:
+
+因为内核编译使用的是Clang编译, 因此对应module的编译也需要使用Clang编译
+
+[module的加载过程](https://www.cnblogs.com/sky-heaven/p/5569240.html)
 

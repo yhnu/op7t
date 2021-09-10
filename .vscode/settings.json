@@ -1,0 +1,9 @@
+{
+    "files.associations": {
+        "*.cjson": "jsonc",
+        "*.wxss": "css",
+        "*.wxs": "javascript",
+        "*.js": "javascriptreact",
+        "module.h": "c"
+    }
+}
