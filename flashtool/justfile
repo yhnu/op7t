@@ -1,0 +1,35 @@
+set shell := ["cmd.exe", "/c"]
+
+magisk:
+    adb push boot_1.img
+
+twrp:
+    fastboot boot recovery-oneplus7t-3.4.2-10.0-b26.img
+
+boot:
+    adb reboot bootloader
+
+@img img:
+    fastboot flash boot {{img}}
+    fastboot reboot
+
+img2:
+    fastboot flash boot ../blu7t/img/boot.img
+    fastboot reboot
+
+@push img:
+    adb shell rm -rf /sdcard/Download/*.img    
+    adb push {{img}} /sdcard/Download/
+
+push2:
+    adb shell rm -rf /sdcard/Download/*.img    
+    adb push ../blu7t/img/boot.img /sdcard/Download/
+
+pull:    
+    adb pull /sdcard/Download/
+
+debug:
+    adb forward tcp:23946 tcp:23946
+    
+    adb shell am start -D -n com.yaotong.crackme/.MainActivity
+
