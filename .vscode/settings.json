@@ -5,5 +5,6 @@
         "*.wxs": "javascript",
         "*.js": "javascriptreact",
         "module.h": "c"
-    }
+    },
+    "editor.formatOnSave": true
 }

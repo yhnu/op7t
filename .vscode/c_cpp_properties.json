@@ -35,6 +35,7 @@
             "name": "AndroidWin",
             "includePath": [
                 "${workspaceFolder}/**",
+                "${workspaceFolder}/blu7t/op7-r70/include",
                 "${env:ANDROID_NDK_ROOT}/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/",
                 "${env:ANDROID_NDK_ROOT}/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1",
                 "${env:ANDROID_NDK_ROOT}/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/aarch64-linux-android"
