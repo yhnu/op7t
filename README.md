@@ -151,3 +151,9 @@ vendor = pc, apple, nvidia, ibm,等。
 sys = none, linux, win32, darwin, cuda等。
 abi = eabi, gnu, android, macho, elf等。
 ```
+
+2021年9月10日 16:33:14
+
+a. linux设备驱动开发学习经典教程
+
+[https://lwn.net/Kernel/LDD3/](https://lwn.net/Kernel/LDD3/)
