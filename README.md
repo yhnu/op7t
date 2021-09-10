@@ -140,3 +140,14 @@ b. 注意:
 
 [module的加载过程](https://www.cnblogs.com/sky-heaven/p/5569240.html)
 
+[clang交叉编译](https://blog.csdn.net/qq_23599965/article/details/90901235)
+
+```shell
+triple 的一般格式为<arch><sub>-<vendor>-<sys>-<abi>，其中：
+
+arch = x86_64、i386、arm、thumb、mips等。
+sub = v5, v6m, v7a, v7m等。
+vendor = pc, apple, nvidia, ibm,等。
+sys = none, linux, win32, darwin, cuda等。
+abi = eabi, gnu, android, macho, elf等。
+```
