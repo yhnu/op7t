@@ -8,7 +8,6 @@
 MODULE_NAME := hello
 
 ifneq ($(KERNELRELEASE),)
-
 	obj-m := hello.o
 
 else

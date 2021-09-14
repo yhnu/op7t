@@ -157,3 +157,11 @@ abi = eabi, gnu, android, macho, elf等。
 a. linux设备驱动开发学习经典教程
 
 [https://lwn.net/Kernel/LDD3/](https://lwn.net/Kernel/LDD3/)
+
+2021年9月11日 21:14:44
+
+## 查看KernelLog
+
+```shell
+adb logcat -b kernel,default 
+```

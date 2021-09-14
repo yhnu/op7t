@@ -4,7 +4,8 @@
         "*.wxss": "css",
         "*.wxs": "javascript",
         "*.js": "javascriptreact",
-        "module.h": "c"
+        "module.h": "c",
+        "moduleparam.h": "c"
     },
-    "editor.formatOnSave": true
+    "editor.formatOnSave": false
 }

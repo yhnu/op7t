@@ -4,7 +4,7 @@
 
 #define USE_IMMEDIATE
 
-//MODULE_LICENSE("Dual BSD/GPL");
+MODULE_LICENSE("Dual BSD/GPL");
 
 static int hello_init(void)
 {
