@@ -35,16 +35,19 @@
 static int g_rwProcMem_major = 0;
 static dev_t g_rwProcMem_devno;
 
+//设备结构体
 struct rwProcMemDev
 {
-	struct cdev cdev;
+	struct cdev cdev; // 字符设备cdev结构体
 	ssize_t mm_struct_arg_start_offset;
 };
+
 struct rwProcMemDev *g_rwProcMem_devp;
 struct class *g_Class_devp;
 
 int rwProcMem_open(struct inode *inode, struct file *filp)
 {
+	printk(KERN_EMERG "rwProcMem_open\n");
 	filp->private_data = g_rwProcMem_devp;
 	return 0;
 }
@@ -61,11 +64,11 @@ static ssize_t rwProcMem_read(struct file *filp, char __user *buf, size_t size, 
 
 	struct pid *proc_pid_struct = NULL;
 	memcpy(&proc_pid_struct, data, sizeof(proc_pid_struct));
-	printk_debug(KERN_INFO "read proc_pid_struct *:%ld\n", proc_pid_struct);
+	printk(KERN_EMERG "read proc_pid_struct *:%ld\n", proc_pid_struct);
 
 	size_t proc_virt_addr = 0;
 	memcpy(&proc_virt_addr, (void *)((size_t)data + (size_t)8), sizeof(proc_virt_addr));
-	printk_debug(KERN_INFO "proc_virt_addr :0x%p\n", proc_virt_addr);
+	printk(KERN_EMERG "proc_virt_addr :0x%p\n", proc_virt_addr);
 
 	if (!check_proc_map_can_read(proc_pid_struct, proc_virt_addr, size))
 	{
@@ -82,13 +85,13 @@ static ssize_t rwProcMem_read(struct file *filp, char __user *buf, size_t size, 
 	{
 
 		size_t phy_addr = get_proc_phy_addr(proc_pid_struct, proc_virt_addr + read_size);
-		printk_debug(KERN_INFO "phy_addr:0x%p\n", phy_addr);
+		printk(KERN_EMERG "phy_addr:0x%p\n", phy_addr);
 		if (phy_addr == 0)
 		{
 			break;
 		}
 		size_t pfn_sz = size_inside_page(phy_addr, ((size - read_size) > PAGE_SIZE) ? PAGE_SIZE : (size - read_size));
-		printk_debug(KERN_INFO "pfn_sz:%ld\n", pfn_sz);
+		printk(KERN_EMERG "pfn_sz:%ld\n", pfn_sz);
 		read_ram_physical_addr_to_user(phy_addr, buf + read_size, pfn_sz);
 		read_size += pfn_sz;
 	}
@@ -109,11 +112,11 @@ static ssize_t rwProcMem_write(struct file *filp, const char __user *buf, size_t
 
 	struct pid *proc_pid_struct = NULL;
 	memcpy(&proc_pid_struct, data, sizeof(proc_pid_struct));
-	printk_debug(KERN_INFO "read proc_pid_struct *:%ld\n", proc_pid_struct);
+	printk(KERN_EMERG "read proc_pid_struct *:%ld\n", proc_pid_struct);
 
 	size_t proc_virt_addr = 0;
 	memcpy(&proc_virt_addr, (void *)((size_t)data + (size_t)8), sizeof(proc_virt_addr));
-	printk_debug(KERN_INFO "proc_virt_addr :0x%p\n", proc_virt_addr);
+	printk(KERN_EMERG "proc_virt_addr :0x%p\n", proc_virt_addr);
 
 	if (!check_proc_map_can_write(proc_pid_struct, proc_virt_addr, size))
 	{
@@ -125,13 +128,13 @@ static ssize_t rwProcMem_write(struct file *filp, const char __user *buf, size_t
 	{
 
 		size_t phy_addr = get_proc_phy_addr(proc_pid_struct, proc_virt_addr + write_size);
-		printk_debug(KERN_INFO "phy_addr:0x%p\n", phy_addr);
+		printk(KERN_EMERG "phy_addr:0x%p\n", phy_addr);
 		if (phy_addr == 0)
 		{
 			break;
 		}
 		size_t pfn_sz = size_inside_page(phy_addr, ((size - write_size) > PAGE_SIZE) ? PAGE_SIZE : (size - write_size));
-		printk_debug(KERN_INFO "pfn_sz:%ld\n", pfn_sz);
+		printk(KERN_EMERG "pfn_sz:%ld\n", pfn_sz);
 		write_ram_physical_addr_from_user(phy_addr, (void *)((size_t)buf + (size_t)16 + write_size), pfn_sz);
 		write_size += pfn_sz;
 	}
@@ -175,10 +178,7 @@ static loff_t rwProcMem_llseek(struct file *filp, loff_t offset, int orig)
 	return ret;
 }
 
-static long rwProcMem_ioctl(
-	struct file *filp,
-	unsigned int cmd,
-	unsigned long arg)
+static long rwProcMem_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
 {
 
 	struct inode *inode = inode = filp->f_inode;
@@ -190,7 +190,7 @@ static long rwProcMem_ioctl(
 	case IOCTL_OPEN_PROCESS:
 	{
 
-		printk_debug(KERN_INFO "IOCTL_OPEN_PROCESS\n");
+		printk(KERN_EMERG "IOCTL_OPEN_PROCESS\n");
 
 		char buf[8];
 		memset(&buf, 0, sizeof(buf));
@@ -201,10 +201,10 @@ static long rwProcMem_ioctl(
 		}
 		int64_t pid = 0;
 		memcpy(&pid, buf, sizeof(pid));
-		printk_debug(KERN_INFO "pid:%ld\n", pid);
+		printk(KERN_EMERG "pid:%ld\n", pid);
 
 		struct pid *proc_pid_struct = get_proc_pid_struct(pid);
-		printk_debug(KERN_INFO "proc_pid_struct *:%ld\n", proc_pid_struct);
+		printk(KERN_EMERG "proc_pid_struct *:%ld\n", proc_pid_struct);
 
 		if (!proc_pid_struct)
 		{
@@ -225,7 +225,7 @@ static long rwProcMem_ioctl(
 	case IOCTL_CLOSE_HANDLE:
 	{
 
-		printk_debug(KERN_INFO "IOCTL_CLOSE_HANDLE\n");
+		printk(KERN_EMERG "IOCTL_CLOSE_HANDLE\n");
 
 		char buf[8];
 		memset(&buf, 0, sizeof(buf));
@@ -237,7 +237,7 @@ static long rwProcMem_ioctl(
 
 		struct pid *proc_pid_struct = NULL;
 		memcpy(&proc_pid_struct, buf, sizeof(proc_pid_struct));
-		printk_debug(KERN_INFO "proc_pid_struct *:%ld\n", proc_pid_struct);
+		printk(KERN_EMERG "proc_pid_struct *:%ld\n", proc_pid_struct);
 		release_proc_pid_struct(proc_pid_struct);
 
 		return 0;
@@ -246,7 +246,7 @@ static long rwProcMem_ioctl(
 	case IOCTL_GET_PROCESS_MAPS_COUNT:
 	{
 
-		printk_debug(KERN_INFO "IOCTL_GET_PROCESS_MAPS_COUNT\n");
+		printk(KERN_EMERG "IOCTL_GET_PROCESS_MAPS_COUNT\n");
 
 		char buf[8];
 		memset(&buf, 0, 8);
@@ -258,7 +258,7 @@ static long rwProcMem_ioctl(
 
 		struct pid *proc_pid_struct = NULL;
 		memcpy(&proc_pid_struct, buf, sizeof(proc_pid_struct));
-		printk_debug(KERN_INFO "proc_pid_struct *:%ld\n", proc_pid_struct);
+		printk(KERN_EMERG "proc_pid_struct *:%ld\n", proc_pid_struct);
 
 		return get_proc_map_count(proc_pid_struct);
 		break;
@@ -266,7 +266,7 @@ static long rwProcMem_ioctl(
 	case IOCTL_GET_PROCESS_MAPS_LIST:
 	{
 
-		printk_debug(KERN_INFO "IOCTL_GET_PROCESS_MAPS_LIST\n");
+		printk(KERN_EMERG "IOCTL_GET_PROCESS_MAPS_LIST\n");
 
 		char buf[24];
 		memset(&buf, 0, 24);
@@ -276,19 +276,24 @@ static long rwProcMem_ioctl(
 			return -EINVAL;
 		}
 
+		//a. get pid struct
 		struct pid *proc_pid_struct = NULL;
 		memcpy(&proc_pid_struct, buf, sizeof(proc_pid_struct));
-		printk_debug(KERN_INFO "proc_pid_struct *:%ld\n", proc_pid_struct);
+		printk(KERN_EMERG "proc_pid_struct *:%ld\n", proc_pid_struct);
 
+		//b. 8 is sizeof proc pid struct
 		size_t name_len = 0;
 		memcpy(&name_len, (void *)((size_t)buf + (size_t)8), sizeof(name_len));
-		printk_debug(KERN_INFO "name_len:%ld\n", name_len);
+		printk(KERN_EMERG "name_len:%ld\n", name_len);
 
+		//c. 16 = sizeof(pid) + sizeof(size_t);
 		size_t buf_size = 0;
 		memcpy(&buf_size, (void *)((size_t)buf + (size_t)16), sizeof(buf_size));
-		printk_debug(KERN_INFO "buf_size:%ld\n", buf_size);
-
+		printk(KERN_EMERG "buf_size:%ld\n", buf_size);
+		
+		//d. 
 		int have_pass;
+		// int get_proc_maps_list_to_user(struct pid *proc_pid_struct, size_t max_path_length, char *lpBuf, size_t buf_size, int *have_pass)
 		int count = get_proc_maps_list_to_user(proc_pid_struct, name_len, (void *)((size_t)arg + (size_t)1), buf_size - 1, &have_pass);
 
 		unsigned char ch = have_pass == 1 ? '\x01' : '\x00';
@@ -302,7 +307,7 @@ static long rwProcMem_ioctl(
 	case IOCTL_CHECK_PROCESS_ADDR_PHY:
 	{
 
-		printk_debug(KERN_INFO "IOCTL_CHECK_PROC_ADDR_PHY\n");
+		printk(KERN_EMERG "IOCTL_CHECK_PROC_ADDR_PHY\n");
 
 		char buf[16];
 		memset(&buf, 0, sizeof(buf));
@@ -314,11 +319,11 @@ static long rwProcMem_ioctl(
 
 		struct pid *proc_pid_struct = NULL;
 		memcpy(&proc_pid_struct, buf, sizeof(proc_pid_struct));
-		printk_debug(KERN_INFO "proc_pid_struct *:%ld\n", proc_pid_struct);
+		printk(KERN_EMERG "proc_pid_struct *:%ld\n", proc_pid_struct);
 
 		size_t proc_virt_addr = 0;
 		memcpy(&proc_virt_addr, (void *)((size_t)buf + (size_t)8), sizeof(proc_virt_addr));
-		printk_debug(KERN_INFO "proc_virt_addr :0x%p\n", proc_virt_addr);
+		printk(KERN_EMERG "proc_virt_addr :0x%p\n", proc_virt_addr);
 
 		if (get_proc_phy_addr(proc_pid_struct, proc_virt_addr))
 		{
@@ -330,7 +335,7 @@ static long rwProcMem_ioctl(
 	case IOCTL_GET_PROCESS_CMDLINE_ADDR:
 	{
 
-		printk_debug(KERN_INFO "IOCTL_GET_PROCESS_CMDLINE_ADDR\n");
+		printk(KERN_EMERG "IOCTL_GET_PROCESS_CMDLINE_ADDR\n");
 
 		char buf[16];
 		memset(&buf, 0, 16);
@@ -342,11 +347,11 @@ static long rwProcMem_ioctl(
 
 		struct pid *proc_pid_struct = NULL;
 		memcpy(&proc_pid_struct, buf, sizeof(proc_pid_struct));
-		printk_debug(KERN_INFO "proc_pid_struct *:%ld\n", proc_pid_struct);
+		printk(KERN_EMERG "proc_pid_struct *:%ld\n", proc_pid_struct);
 
 		ssize_t relative_offset = 0;
 		memcpy(&relative_offset, (void *)((size_t)buf + (size_t)8), sizeof(relative_offset));
-		printk_debug(KERN_INFO "relative_offset:%ld\n", relative_offset);
+		printk(KERN_EMERG "relative_offset:%ld\n", relative_offset);
 		if (relative_offset != -1)
 		{
 			devp->mm_struct_arg_start_offset = relative_offset;
@@ -370,7 +375,7 @@ static long rwProcMem_ioctl(
 	case IOCTL_GET_PROCESS_RSS:
 	{
 
-		printk_debug(KERN_INFO "IOCTL_GET_PROCESS_RSS\n");
+		printk(KERN_EMERG "IOCTL_GET_PROCESS_RSS\n");
 
 		char buf[8];
 		memset(&buf, 0, 8);
@@ -382,7 +387,7 @@ static long rwProcMem_ioctl(
 
 		struct pid *proc_pid_struct = NULL;
 		memcpy(&proc_pid_struct, buf, sizeof(proc_pid_struct));
-		printk_debug(KERN_INFO "proc_pid_struct *:%ld\n", proc_pid_struct);
+		printk(KERN_EMERG "proc_pid_struct *:%ld\n", proc_pid_struct);
 
 		memset(&buf, 0, 8);
 		size_t rss = read_proc_rss_size(proc_pid_struct, devp->mm_struct_arg_start_offset);
@@ -427,7 +432,7 @@ static const struct file_operations rwProcMem_fops =
 static int rwProcMem_dev_init(void)
 {
 	int result;
-
+	/* 在内核中注册设备 */
 	result = alloc_chrdev_region(&g_rwProcMem_devno, 0, 1, DEV_FILENAME);
 	g_rwProcMem_major = MAJOR(g_rwProcMem_devno);
 

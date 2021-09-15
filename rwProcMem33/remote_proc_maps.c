@@ -15,16 +15,25 @@ size_t get_proc_map_count(struct pid *proc_pid_struct)
 	struct mm_struct *mm;
 	size_t count = 0;
 
+	/**
+	 * get_task_mm - acquire a reference to the task's mm
+	 *
+	 * Returns %NULL if the task has no mm.  Checks PF_KTHREAD (meaning
+	 * this kernel workthread has transiently adopted a user mm with use_mm,
+	 * to do its AIO) is not set and if so returns a reference to it, after
+	 * bumping up the use count.  User must release the mm via mmput()
+	 * after use.  Typically used by /proc and ptrace.
+	 */
 	mm = get_task_mm(task);
-	put_task_struct(task);
+	put_task_struct(task);   //for get_pid_task, release usage
 	if (!mm)
 	{
 		return 0;
 	}
-	down_read(&mm->mmap_sem);
-	count = mm->map_count;
-	up_read(&mm->mmap_sem);
-	mmput(mm);
+	down_read(&mm->mmap_sem); //lock for reading
+	count = mm->map_count;    /* number of VMAs */
+	up_read(&mm->mmap_sem);   //release a read lock
+	mmput(mm); //release the mm via mmput
 
 	return count;
 }
@@ -2288,7 +2297,7 @@ static int is_stack(struct vm_area_struct *vma)
 		   vma->vm_end >= vma->vm_mm->start_stack;
 }
 
-int get_proc_maps_list_to_kernel(struct pid *proc_pid_struct, size_t max_path_length, char *lpBuf, size_t buf_size, int *have_pass)
+static int get_proc_maps_list_to_kernel(struct pid *proc_pid_struct, size_t max_path_length, char *lpBuf, size_t buf_size, int *have_pass)
 {
 	if (max_path_length > PATH_MAX || max_path_length <= 0)
 	{

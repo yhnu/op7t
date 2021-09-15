@@ -6,9 +6,9 @@
 
 
 size_t get_proc_map_count(struct pid* proc_pid_struct);
-int get_proc_maps_list_to_kernel(struct pid* proc_pid_struct,
-                                 size_t max_path_length, char* lpBuf,
-                                 size_t buf_size, int* have_pass);
+// int get_proc_maps_list_to_kernel(struct pid* proc_pid_struct,
+//                                  size_t max_path_length, char* lpBuf,
+//                                  size_t buf_size, int* have_pass);
 int get_proc_maps_list_to_user(struct pid* proc_pid_struct,
                                size_t max_path_length, char* lpBuf,
                                size_t buf_size, int* have_pass);
