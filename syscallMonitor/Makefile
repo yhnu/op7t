@@ -21,5 +21,5 @@ modules:
 	CLANG_TRIPLE=aarch64-linux-gnu- ARCH=arm64 M=$(PWD) modules CONFIG_MODULE_UNLOAD=y CONFIG_RETPOLINE=y
 
 clean:
-	rm -rf *.tmp *.d *.o *.order *.symvers *.ko *.mod* .*.cmd .*.*.cmd .*.*.*.cmd	
+	rm -rf *.*.tmp *.*.d *.o *.order *.symvers *.ko *.mod* .*.cmd .*.*.cmd .*.*.*.cmd	
 endif
