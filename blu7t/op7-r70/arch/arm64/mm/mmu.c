@@ -431,7 +431,7 @@ void __init create_pgd_mapping(struct mm_struct *mm, phys_addr_t phys,
 			     pgd_pgtable_alloc, flags);
 }
 
-static void update_mapping_prot(phys_addr_t phys, unsigned long virt,
+void update_mapping_prot(phys_addr_t phys, unsigned long virt,
 				phys_addr_t size, pgprot_t prot)
 {
 	if (virt < VMALLOC_START) {
