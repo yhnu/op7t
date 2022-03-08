@@ -1,0 +1,5 @@
+set shell := ["cmd.exe", "/c"]
+demo:
+    cargo run --release demo.krhook.txt sym
+check:
+    cargo check

@@ -1,0 +1,6 @@
+  929  echo $CROSS_COMPILE
+  930  source env.config
+  933  just make
+  934  just j16
+  935  git s
+  936  git add -A

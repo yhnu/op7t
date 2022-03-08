@@ -1,0 +1,10 @@
+config STEP_MOTOR
+	tristate "Step motor driver for stspin220"
+	help
+	  This option enable support for stspin220 step motor Driver.
+
+config DIGITAL_HALL_M1120
+	tristate "digital hall m1120 Controler"
+	default n
+	help
+	  Say Y here to enable m1120.

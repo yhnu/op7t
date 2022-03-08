@@ -1,0 +1,10 @@
+
+#Added by Tong.han@Bsp.group.Tp for synaptics ic driver
+
+config TOUCHPANEL_SYNAPTICS_S3320
+#	default y
+	bool "TP Synaptics_S3508 IC enable or not for OP"
+	---help---
+	say Y to enable driver for Touchpanel useing synaptics S3320
+	
+

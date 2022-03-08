@@ -1,0 +1,25 @@
+set shell := ["cmd.exe", "/c"]
+
+@push uid:
+    adb push krhook.ko /data/local/tmp/
+    adb shell su -c "insmod /data/local/tmp/krhook.ko myuid={{uid}}"
+
+@repush uid:
+    adb push krhook.ko /data/local/tmp/
+    adb shell su -c "rmmod /data/local/tmp/krhook.ko"
+    adb shell su -c "insmod /data/local/tmp/krhook.ko myuid={{uid}}"
+
+push2:
+    adb push krhook.ko /data/local/tmp/
+    adb shell su -c "rmmod /data/local/tmp/krhook.ko"
+    adb shell su -c "insmod /data/local/tmp/krhook.ko"
+    adb shell su -c "echo 10226 > /dev/mypid"
+
+pull:
+    adb shell su -c "cp -rf /sys/fs/pstore/ /data/local/tmp/pstore"
+    adb shell su -c "chown shell:shell -R /data/local/tmp/pstore"
+    adb pull /data/local/tmp/pstore
+
+kmsg:
+    adb shell su -c "cat /dev/kmsg > /data/local/tmp/kmsg.txt"
+    adb pull /data/local/tmp/kmsg.txt

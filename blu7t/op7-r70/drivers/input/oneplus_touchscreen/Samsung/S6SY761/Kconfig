@@ -1,0 +1,10 @@
+
+#Added by Cong.Dai@Bsp.group.Tp for Samsung s6sy761 ic driver
+
+config TOUCHPANEL_SAMSUNG_S6SY761
+#	default y
+	bool "TP Samsung s6sy761 IC enable or not for OP"
+	---help---
+	say Y to enable driver for Touchpanel using Samsung s6sy761
+
+

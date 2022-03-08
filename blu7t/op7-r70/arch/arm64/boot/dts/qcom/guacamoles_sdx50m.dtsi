@@ -1,0 +1,11 @@
+/*this is for sdx50m project */
+&ois_rear_0 {
+ois_gyro,id = <2>;//18827
+};
+&ois_rear_1 {
+ois_gyro,id = <2>;//18827
+};
+
+&pm8150b_charger {
+	op,dis_ctrl_current;
+};

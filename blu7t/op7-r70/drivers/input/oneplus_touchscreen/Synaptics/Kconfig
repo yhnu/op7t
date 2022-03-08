@@ -1,0 +1,8 @@
+
+source "drivers/input/oneplus_touchscreen/Synaptics/S3508/Kconfig"
+source "drivers/input/oneplus_touchscreen/Synaptics/S3320/Kconfig"
+source "drivers/input/oneplus_touchscreen/Synaptics/S3706/Kconfig"
+source "drivers/input/oneplus_touchscreen/Synaptics/S4322/Kconfig"
+source "drivers/input/oneplus_touchscreen/Synaptics/TD4310/Kconfig"
+source "drivers/input/oneplus_touchscreen/Synaptics/Syna_tcm/Kconfig"
+source "drivers/input/oneplus_touchscreen/Synaptics/S1302_virtal_key/Kconfig"

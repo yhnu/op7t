@@ -1,0 +1,7 @@
+/*this is for sm8150 version */
+&ois_rear_0 {
+ois_gyro,id = <3>;//18821
+};
+&ois_rear_1 {
+ois_gyro,id = <3>;//18821
+};

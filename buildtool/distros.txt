@@ -1,0 +1,68 @@
+upstream	linuxcompat	1.0.20210606	true	jason@zx2c4.com
+upstream	tools	1.0.20210914	true	jason@zx2c4.com
+upstream	go	0.0.20210424	true	jason@zx2c4.com
+upstream	win	0.4.10	true	jason@zx2c4.com
+upstream	kfreebsd	0.0.20210606	true	jason@zx2c4.com
+upstream	apk	1.0.20210926	true	jason@zx2c4.com
+upstream	apple	1.0.15	true	jason@zx2c4.com
+homebrew	tools	1.0.20210914	true	ilovezfs@icloud.com
+nixos	linuxcompat	1.0.20210606	true	joerg@thalheim.io
+nixos	tools	1.0.20210914	true	joerg@thalheim.io
+void	linuxcompat	1.0.20210606	true	leah@vuxu.org
+nixos	go	0.0.20210424	true	kirelagin@gmail.com
+void	tools	1.0.20210914	true	leah@vuxu.org
+homebrew	go	0.0.20210424	true	ilovezfs@icloud.com
+edgeos	linuxcompat	1.0.20210606	true	info@fossores.de
+macports	go	0.0.20210424	true	calvin@isi.edu
+macports	tools	1.0.20210914	true	calvin@isi.edu
+windowsdl	win	0.4.10	true	
+termux	tools	1.0.20210424	false	leonid.plyushch@gmail.com
+edgeos	tools	1.0.20210914	true	info@fossores.de
+ast	tools	1.0.20210914	true	lonnie@abelbeck.com
+ast	linuxcompat	1.0.20210606	true	lonnie@abelbeck.com
+freebsd	go	0.0.20210424	true	decke@FreeBSD.org
+freebsd	tools	1.0.20210914	true	decke@FreeBSD.org
+freebsd	kfreebsd	0.0.20210606	true	decke@FreeBSD.org
+gentoo	linuxcompat	1.0.20210606	true	zx2c4@gentoo.org
+gentoo	tools	1.0.20210914	true	zx2c4@gentoo.org
+ios	apple	1.0.15	true	
+slackware	linuxcompat	1.0.20210219	false	alvind11@hotmail.com
+slackware	tools	1.0.20210315	false	alvind11@hotmail.com
+playstore	apk	1.0.20210926	true	
+sourcemage	tools	1.0.20210424	false	siflfran@hawo.stw.uni-erlangen.de
+centos8plus	linuxcompat	1.0.20210606	true	amyagi@gmail.com
+rhel-dkms	linuxcompat	1.0.20210606	true	joe@solidadmin.com
+buildroot	linuxcompat	1.0.20210219	false	peter@korsgaard.com
+buildroot	tools	1.0.20210223	false	peter@korsgaard.com
+mageia	tools	1.0.20210424	false	tmb@mageia.org
+ol8	tools	1.0.20200827	false	
+ol7	tools	1.0.20200827	false	
+adelie	tools	1.0.20200513	false	ska@skarnet.org
+macos	apple	1.0.15	true	
+adelie	linuxcompat	1.0.20200506	false	ska@skarnet.org
+centos7plus	linuxcompat	1.0.20210606	true	amyagi@gmail.com
+ubuntu	tools	1.0.20210424	false	unit193@ubuntu.com
+ubuntu	linuxcompat	1.0.20210606	true	unit193@ubuntu.com
+alpine	tools	1.0.20210914	true	ncopa@alpinelinux.org
+arch	linuxcompat	1.0.20210606	true	mail@eworm.de
+alpine	go	0.0.20210424	true	kroko87@hotmail.com
+debian	tools	1.0.20210914	true	dkg@fifthhorseman.net
+debian	linuxcompat	1.0.20210606	true	dkg@fifthhorseman.net
+opensuse	linuxcompat	1.0.20200908	false	mardnh@gmx.de
+opensuse	tools	1.0.20210914	true	mardnh@gmx.de
+openbsd	tools	1.0.20210424	false	jasper@openbsd.org
+ubuntuppa	tools	unknown	false	unit193@ubuntu.com
+rhel7	linuxcompat	1.0.20210606	true	phil@elrepo.org
+exherbo	linuxcompat	1.0.20210219	false	keruspe@exherbo.org
+exherbo	tools	1.0.20210315	false	keruspe@exherbo.org
+ubuntuppa	linuxcompat	unknown	false	unit193@ubuntu.com
+openbsd	go	0.0.20200320	false	jasper@openbsd.org
+openwrt	tools	1.0.20210424	false	ilya.lipnitskiy@gmail.com
+rhel8	linuxcompat	1.0.20210606	true	phil@elrepo.org
+arch	tools	unknown	false	mail@eworm.de
+milis	tools	1.0.20200827	false	milisarge@gmail.com
+milis	linuxcompat	1.0.20200908	false	milisarge@gmail.com
+fdroid	apk	1.0.20210926	true	relan@bk.ru
+fedora	tools	1.0.20210914	true	joe@solidadmin.com
+rhel8	tools	1.0.20210914	true	joe@solidadmin.com
+rhel7	tools	1.0.20210914	true	joe@solidadmin.com

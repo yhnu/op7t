@@ -1,0 +1,30 @@
+menuconfig INPUT_FINGERPRINT
+	bool "Fingerprint"
+	default y
+	help
+	  Say Y here, and a list of supported fingerprint will be displayed.
+	  This option doesn't affect the kernel.
+
+	  If unsure, say Y.
+
+if INPUT_FINGERPRINT
+
+config FINGERPRINT_DETECT
+	tristate "fingerprint detect support"
+	depends on SPI_MASTER
+
+
+config FINGERPRINT_GOODIX
+	tristate "goodix fingerprint sensor support"
+	depends on SPI_MASTER
+
+
+config MSM_QBT1000
+    bool "QBT1000 Ultrasonic Fingerprint Sensor"
+    help
+      This driver provides services for configuring the fingerprint
+      sensor hardware and for communicating with the trusted app which
+      uses it. It enables clocks and provides commands for loading
+      trusted apps, unloading them and marshalling buffers to the
+      trusted fingerprint app.
+endif

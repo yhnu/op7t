@@ -1,0 +1,17 @@
+/*this is for sdx50m project */
+&ois_rear_0 {
+ois_gyro,id = <2>;//18827
+};
+&ois_rear_1 {
+ois_gyro,id = <2>;//18827
+};
+
+&soc {
+	qcom,msm-imem@146bf000 {
+		download_mode@0{
+			compatible = "qcom,msm-imem-download_mode";
+			reg = <0x658 4>;
+		};
+	};
+};
+

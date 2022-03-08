@@ -1,0 +1,34 @@
+config OPCHAIN
+	default n
+	bool "Oneplus CoreTech helper, used for opchain module"
+config MEMPLUS
+	default n
+	bool "memory+ feature"
+	help
+	 Memory+ feature
+config SMART_BOOST
+	bool "support smart boost feature"
+	default n
+	help
+	 this feature allow memory used by recent-app stay in kernel.
+config DEFRAG
+	default n
+	bool "anti-defragment feature"
+	help
+	 anti-defragment feature.
+config FSC
+	default n
+	bool "system layer file status cache"
+	help
+	 To cache absence file and avoid stat call storm
+config HOUSTON
+	default n
+	bool "to collect system-wide and pmu data"
+	help
+	 Realtime temperature monitor
+config CONTROL_CENTER
+	default n
+	bool "control center"
+config AIGOV
+	default n
+	bool "A governor which using ai predicted info as input"

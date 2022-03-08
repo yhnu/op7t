@@ -1,0 +1,6 @@
+config TOUCHPANEL_SYNAPTICS_TD4310
+	default n
+	bool "TP Synaptics_TD4310 IC enable or not for OP"
+	---help---
+	say Y to enable driver for Touchpanel useing synaptics TD4310
+

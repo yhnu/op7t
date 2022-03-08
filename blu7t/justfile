@@ -1,0 +1,49 @@
+set export
+
+alias c := config
+alias m := make
+
+mytime := `date +%s`
+buildtool := "$GITHUB_WORKSPACE/buildtool"
+
+config:
+	#unzip -q r70.zip
+	cp Makefile op7-r70/
+
+clean:
+	rm -rf op7-r70
+
+env:
+	bash env.config
+	bash proxy.config
+
+make:
+	echo $GITHUB_WORKSPACE	
+	cd op7-r70 && make O=out REAL_CC=$GITHUB_WORKSPACE/buildtool/toolchains/llvm-Snapdragon_LLVM_for_Android_8.0/prebuilt/linux-x86_64/bin/clang CLANG_TRIPLE=aarch64-linux-gnu- blu_spark_defconfig
+	
+j16:	
+	cd op7-r70/out && make -j$(nproc --all) REAL_CC=$GITHUB_WORKSPACE/buildtool/toolchains/llvm-Snapdragon_LLVM_for_Android_8.0/prebuilt/linux-x86_64/bin/clang CLANG_TRIPLE=aarch64-linux-gnu- 
+
+j32:	
+	cd op7-r70/out && make -j$(nproc --all) REAL_CC=$GITHUB_WORKSPACE/buildtool/toolchains/llvm-Snapdragon_LLVM_for_Android_8.0/prebuilt/linux-x86_64/bin/clang CLANG_TRIPLE=aarch64-linux-gnu- 
+
+img:
+	cp $GITHUB_WORKSPACE/blu7t/op7-r70/out/arch/arm64/boot/Image.gz-dtb $GITHUB_WORKSPACE/blu7t/img/
+	cd $GITHUB_WORKSPACE/blu7t/img/ && mv Image.gz-dtb zImage
+	cd $GITHUB_WORKSPACE/blu7t/img/ && abootimg --create boot.img -f bootimg.cfg -k zImage -r initrd.img
+
+image:
+	cp $GITHUB_WORKSPACE/blu7t/op7-r70/out/arch/arm64/boot/Image.gz-dtb $GITHUB_WORKSPACE/blu7t/img/
+	cd $GITHUB_WORKSPACE/blu7t/img/ && mv Image.gz-dtb zImage
+	cd $GITHUB_WORKSPACE/blu7t/img/ && abootimg --create boot_${mytime}.img -f bootimg.cfg -k zImage -r initrd.img
+	cd $GITHUB_WORKSPACE/blu7t/img/ && git add -A
+	cd $GITHUB_WORKSPACE/blu7t/img/ && git commit
+	cd $GITHUB_WORKSPACE/blu7t/img/ && git push origin master
+
+all:	
+	export CROSS_COMPILE=/share/aarch64-linux-android-4.9-uber/bin/aarch64-linux-android-
+	export ARCH=arm64
+	export SUBARCH=arm64
+	export ANDROID_AARCH64=/share/aarch64-linux-android-4.9-uber/bin
+	export DTC_EXT=/root/dtc/dtc
+	make -j32 REAL_CC=/share/op7t/buildtool/toolchains/llvm-Snapdragon_LLVM_for_Android_8.0/prebuilt/linux-x86_64/bin/clang CLANG_TRIPLE=aarch64-linux-gnu- 

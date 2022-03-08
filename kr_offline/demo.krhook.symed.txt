@@ -1,0 +1,77 @@
+-----------------------------------------
+openat[] dump stack:
+/apex/com.android.runtime/lib64/bionic/libc.so/0x7277145000 + 0xc1388 (__openat multf3.c:? )
+-----------------------------------------
+openat[] dump stack:
+/apex/com.android.runtime/lib64/bionic/libdl.so/0x727a16c000 + 0x1024
+/system/lib64/libgui.so/0x72792d3000 + 0xbfa50
+/system/lib64/libgui.so/0x72792d3000 + 0xbeb08
+/system/lib64/libgui.so/0x72792d3000 + 0xbf8a8
+/system/lib64/libandroid_runtime.so/0x7278bc0000 + 0x11cb94
+-----------------------------------------
+openat[/storage/emulated/0/Android/data/com.DefaultCompany.krhook_unity3d/files/a.txt] dump stack:
+/apex/com.android.runtime/lib64/bionic/libc.so/0x7277145000 + 0xc1388 (__openat multf3.c:? )
+/data/app/com.DefaultCompany.krhook_unity3d-PL6MaRBI5vxhNhVP3URXtA==/lib/arm64/libil2cpp.so/0x7184a03000 + 0x506c18 (_ZN6il2cpp2os4File4OpenERKNSt6__ndk112basic_stringIcNS2_11char_traitsIcEENS2_9allocatorIcEEEEiiiiPi ??:? )
+/data/app/com.DefaultCompany.krhook_unity3d-PL6MaRBI5vxhNhVP3URXtA==/lib/arm64/libil2cpp.so/0x7184a03000 + 0x528568 (_ZN6il2cpp6icalls8mscorlib6System2IO6MonoIO6Open40EPDsiiiiPi ??:? )
+/data/app/com.DefaultCompany.krhook_unity3d-PL6MaRBI5vxhNhVP3URXtA==/lib/arm64/libil2cpp.so/0x7184a03000 + 0xf7b054 (MonoIO_Open_m194115823A6163255C8845AB97ADF010DAD88E22 ??:? )
+/data/app/com.DefaultCompany.krhook_unity3d-PL6MaRBI5vxhNhVP3URXtA==/lib/arm64/libil2cpp.so/0x7184a03000 + 0xf6e930 (MonoIO_Open_m75D574F44B3C1E6FA4E245D48D5AC73F70BE16B7 ??:? )
+/data/app/com.DefaultCompany.krhook_unity3d-PL6MaRBI5vxhNhVP3URXtA==/lib/arm64/libil2cpp.so/0x7184a03000 + 0xf6ca6c (FileStream__ctor_mBC5F76C88DBC8C81D1F83407197D75F36E1ADBD7 ??:? )
+/data/app/com.DefaultCompany.krhook_unity3d-PL6MaRBI5vxhNhVP3URXtA==/lib/arm64/libil2cpp.so/0x7184a03000 + 0xf6893c (FileStream__ctor_mB254658F1E758D76B41C942CB91BDF38FD544C83 ??:? )
+/data/app/com.DefaultCompany.krhook_unity3d-PL6MaRBI5vxhNhVP3URXtA==/lib/arm64/libil2cpp.so/0x7184a03000 + 0xf688b0 (File_Open_mDA5EB4A312EAEBF8543B13C572271FB5F673A501 ??:? )
+/data/app/com.DefaultCompany.krhook_unity3d-PL6MaRBI5vxhNhVP3URXtA==/lib/arm64/libil2cpp.so/0x7184a03000 + 0xf9b918 (FileOpenTest_FileOpen_m76B8151D8C479F745ECF6F56D62D556DB2435397 ??:? )
+/data/app/com.DefaultCompany.krhook_unity3d-PL6MaRBI5vxhNhVP3URXtA==/lib/arm64/libil2cpp.so/0x7184a03000 + 0xa8cfd8 (UnityAction_Invoke_mC9FF5AA1F82FDE635B3B6644CE71C94C31C3E71A ??:? )
+/data/app/com.DefaultCompany.krhook_unity3d-PL6MaRBI5vxhNhVP3URXtA==/lib/arm64/libil2cpp.so/0x7184a03000 + 0xa99290 (InvokableCall_Invoke_m0B9E7F14A2C67AB51F01745BD2C6C423114C9394 ??:? )
+/data/app/com.DefaultCompany.krhook_unity3d-PL6MaRBI5vxhNhVP3URXtA==/lib/arm64/libil2cpp.so/0x7184a03000 + 0xa9c61c (UnityEvent_Invoke_mB2FA1C76256FE34D5E7F84ABE528AC61CE8A0325 ??:? )
+/data/app/com.DefaultCompany.krhook_unity3d-PL6MaRBI5vxhNhVP3URXtA==/lib/arm64/libil2cpp.so/0x7184a03000 + 0x8ea8b0 (Button_Press_m33BA6E9820146E8EED7AB489A8846D879B76CF41 ??:? )
+/data/app/com.DefaultCompany.krhook_unity3d-PL6MaRBI5vxhNhVP3URXtA==/lib/arm64/libil2cpp.so/0x7184a03000 + 0x8ea980 (Button_OnPointerClick_m4C4EDB8613C2C5B391EFD3A29C58B0AA00DD9B91 ??:? )
+/data/app/com.DefaultCompany.krhook_unity3d-PL6MaRBI5vxhNhVP3URXtA==/lib/arm64/libil2cpp.so/0x7184a03000 + 0x3ea750 (_ZN23InterfaceActionInvoker1IP58PointerEventData_tC18994283B7753E430E316A62D9E45BA6D644C63E6InvokeEjP11Il2CppClassP12Il2CppObjectS1_ ??:? )
+/data/app/com.DefaultCompany.krhook_unity3d-PL6MaRBI5vxhNhVP3URXtA==/lib/arm64/libil2cpp.so/0x7184a03000 + 0x8d50b8 (ExecuteEvents_Execute_m24768528CCF25F4ADB0E66538ABF950C8EE2E9B0 ??:? )
+/data/app/com.DefaultCompany.krhook_unity3d-PL6MaRBI5vxhNhVP3URXtA==/lib/arm64/libil2cpp.so/0x7184a03000 + 0xbead38 (EventFunction_1_Invoke_mB923A0E7E49A56D420C97EB6D98A660EAF8A348D_gshared ??:? )
+/data/app/com.DefaultCompany.krhook_unity3d-PL6MaRBI5vxhNhVP3URXtA==/lib/arm64/libil2cpp.so/0x7184a03000 + 0xdc23fc (ExecuteEvents_Execute_TisRuntimeObject_m69C612263456A3111F97114B38B8A0E2E16E4347_gshared ??:? )
+/data/app/com.DefaultCompany.krhook_unity3d-PL6MaRBI5vxhNhVP3URXtA==/lib/arm64/libil2cpp.so/0x7184a03000 + 0x3edab0 (_Z129ExecuteEvents_Execute_TisIPointerClickHandler_t337D40B4F0C87DA190B55BF225ADB716F4ADCA13_mB8A59713F468FB6A061C8A5DF7FF205EE1C9A855P52GameObject_tBD1244AD56B4E59AAD76E5E7C9282EC5CE434F0FP55BaseEventData_t46C9D2AE3183A742EDE89944AF64A23DBF1B80A5P57EventFunction_1_t7BFB6A90DB6AE5607866DE2A89133CA327285B1EPK10MethodInfo ??:? )
+/data/app/com.DefaultCompany.krhook_unity3d-PL6MaRBI5vxhNhVP3URXtA==/lib/arm64/libil2cpp.so/0x7184a03000 + 0x8e4388 (StandaloneInputModule_ProcessTouchPress_m46FBF040EAB0A0F8D832FEB600EF0B9C48E13F61 ??:? )
+/data/app/com.DefaultCompany.krhook_unity3d-PL6MaRBI5vxhNhVP3URXtA==/lib/arm64/libil2cpp.so/0x7184a03000 + 0x8e283c (StandaloneInputModule_ProcessTouchEvents_m74C783AF0B4D517978ECCE3E8A1081F49D174F69 ??:? )
+/data/app/com.DefaultCompany.krhook_unity3d-PL6MaRBI5vxhNhVP3URXtA==/lib/arm64/libil2cpp.so/0x7184a03000 + 0x8e20cc (StandaloneInputModule_Process_mF637455BCED017FB359E090B58F15C490EFD2B54 ??:? )
+/data/app/com.DefaultCompany.krhook_unity3d-PL6MaRBI5vxhNhVP3URXtA==/lib/arm64/libil2cpp.so/0x7184a03000 + 0x34c84c (_ZN18VirtActionInvoker06InvokeEjP12Il2CppObject ??:? )
+/data/app/com.DefaultCompany.krhook_unity3d-PL6MaRBI5vxhNhVP3URXtA==/lib/arm64/libil2cpp.so/0x7184a03000 + 0x8d37e4 (EventSystem_Update_m12CAEF521A10D406D1A6EA01E00DD851683C7208 ??:? )
+/data/app/com.DefaultCompany.krhook_unity3d-PL6MaRBI5vxhNhVP3URXtA==/lib/arm64/libil2cpp.so/0x7184a03000 + 0x368230 (_Z65RuntimeInvoker_TrueVoid_t22962CB4C05B1D89B55A6E1139F0E87A90987017PFvvEPK10MethodInfoPvPS4_ ??:? )
+/data/app/com.DefaultCompany.krhook_unity3d-PL6MaRBI5vxhNhVP3URXtA==/lib/arm64/libil2cpp.so/0x7184a03000 + 0x59ceac (_ZN6il2cpp2vm7Runtime6InvokeEPK10MethodInfoPvPS5_PP15Il2CppException ??:? )
+/data/app/com.DefaultCompany.krhook_unity3d-PL6MaRBI5vxhNhVP3URXtA==/lib/arm64/libil2cpp.so/0x7184a03000 + 0x4fff04 (il2cpp_runtime_invoke ??:? )
+/data/app/com.DefaultCompany.krhook_unity3d-PL6MaRBI5vxhNhVP3URXtA==/lib/arm64/libunity.so/0x7189808000 + 0xc2c1d0 (_Z23scripting_method_invoke18ScriptingMethodPtr18ScriptingObjectPtrR18ScriptingArgumentsP21ScriptingExceptionPtrb ??:? )
+-----------------------------------------
+openat[/storage/emulated/0/Android/data/com.DefaultCompany.krhook_unity3d/files/a.txt] dump stack:
+/apex/com.android.runtime/lib64/bionic/libc.so/0x7277145000 + 0xc1388 (__openat multf3.c:? )
+/data/app/com.DefaultCompany.krhook_unity3d-PL6MaRBI5vxhNhVP3URXtA==/lib/arm64/libil2cpp.so/0x7184a03000 + 0x506c18 (_ZN6il2cpp2os4File4OpenERKNSt6__ndk112basic_stringIcNS2_11char_traitsIcEENS2_9allocatorIcEEEEiiiiPi ??:? )
+/data/app/com.DefaultCompany.krhook_unity3d-PL6MaRBI5vxhNhVP3URXtA==/lib/arm64/libil2cpp.so/0x7184a03000 + 0x528568 (_ZN6il2cpp6icalls8mscorlib6System2IO6MonoIO6Open40EPDsiiiiPi ??:? )
+/data/app/com.DefaultCompany.krhook_unity3d-PL6MaRBI5vxhNhVP3URXtA==/lib/arm64/libil2cpp.so/0x7184a03000 + 0xf7b054 (MonoIO_Open_m194115823A6163255C8845AB97ADF010DAD88E22 ??:? )
+/data/app/com.DefaultCompany.krhook_unity3d-PL6MaRBI5vxhNhVP3URXtA==/lib/arm64/libil2cpp.so/0x7184a03000 + 0xf6e930 (MonoIO_Open_m75D574F44B3C1E6FA4E245D48D5AC73F70BE16B7 ??:? )
+/data/app/com.DefaultCompany.krhook_unity3d-PL6MaRBI5vxhNhVP3URXtA==/lib/arm64/libil2cpp.so/0x7184a03000 + 0xf6ca6c (FileStream__ctor_mBC5F76C88DBC8C81D1F83407197D75F36E1ADBD7 ??:? )
+/data/app/com.DefaultCompany.krhook_unity3d-PL6MaRBI5vxhNhVP3URXtA==/lib/arm64/libil2cpp.so/0x7184a03000 + 0xf6893c (FileStream__ctor_mB254658F1E758D76B41C942CB91BDF38FD544C83 ??:? )
+/data/app/com.DefaultCompany.krhook_unity3d-PL6MaRBI5vxhNhVP3URXtA==/lib/arm64/libil2cpp.so/0x7184a03000 + 0xf688b0 (File_Open_mDA5EB4A312EAEBF8543B13C572271FB5F673A501 ??:? )
+/data/app/com.DefaultCompany.krhook_unity3d-PL6MaRBI5vxhNhVP3URXtA==/lib/arm64/libil2cpp.so/0x7184a03000 + 0xf9b918 (FileOpenTest_FileOpen_m76B8151D8C479F745ECF6F56D62D556DB2435397 ??:? )
+/data/app/com.DefaultCompany.krhook_unity3d-PL6MaRBI5vxhNhVP3URXtA==/lib/arm64/libil2cpp.so/0x7184a03000 + 0xa8cfd8 (UnityAction_Invoke_mC9FF5AA1F82FDE635B3B6644CE71C94C31C3E71A ??:? )
+/data/app/com.DefaultCompany.krhook_unity3d-PL6MaRBI5vxhNhVP3URXtA==/lib/arm64/libil2cpp.so/0x7184a03000 + 0xa99290 (InvokableCall_Invoke_m0B9E7F14A2C67AB51F01745BD2C6C423114C9394 ??:? )
+/data/app/com.DefaultCompany.krhook_unity3d-PL6MaRBI5vxhNhVP3URXtA==/lib/arm64/libil2cpp.so/0x7184a03000 + 0xa9c61c (UnityEvent_Invoke_mB2FA1C76256FE34D5E7F84ABE528AC61CE8A0325 ??:? )
+/data/app/com.DefaultCompany.krhook_unity3d-PL6MaRBI5vxhNhVP3URXtA==/lib/arm64/libil2cpp.so/0x7184a03000 + 0x8ea8b0 (Button_Press_m33BA6E9820146E8EED7AB489A8846D879B76CF41 ??:? )
+/data/app/com.DefaultCompany.krhook_unity3d-PL6MaRBI5vxhNhVP3URXtA==/lib/arm64/libil2cpp.so/0x7184a03000 + 0x8ea980 (Button_OnPointerClick_m4C4EDB8613C2C5B391EFD3A29C58B0AA00DD9B91 ??:? )
+/data/app/com.DefaultCompany.krhook_unity3d-PL6MaRBI5vxhNhVP3URXtA==/lib/arm64/libil2cpp.so/0x7184a03000 + 0x3ea750 (_ZN23InterfaceActionInvoker1IP58PointerEventData_tC18994283B7753E430E316A62D9E45BA6D644C63E6InvokeEjP11Il2CppClassP12Il2CppObjectS1_ ??:? )
+/data/app/com.DefaultCompany.krhook_unity3d-PL6MaRBI5vxhNhVP3URXtA==/lib/arm64/libil2cpp.so/0x7184a03000 + 0x8d50b8 (ExecuteEvents_Execute_m24768528CCF25F4ADB0E66538ABF950C8EE2E9B0 ??:? )
+/data/app/com.DefaultCompany.krhook_unity3d-PL6MaRBI5vxhNhVP3URXtA==/lib/arm64/libil2cpp.so/0x7184a03000 + 0xbead38 (EventFunction_1_Invoke_mB923A0E7E49A56D420C97EB6D98A660EAF8A348D_gshared ??:? )
+/data/app/com.DefaultCompany.krhook_unity3d-PL6MaRBI5vxhNhVP3URXtA==/lib/arm64/libil2cpp.so/0x7184a03000 + 0xdc23fc (ExecuteEvents_Execute_TisRuntimeObject_m69C612263456A3111F97114B38B8A0E2E16E4347_gshared ??:? )
+/data/app/com.DefaultCompany.krhook_unity3d-PL6MaRBI5vxhNhVP3URXtA==/lib/arm64/libil2cpp.so/0x7184a03000 + 0x3edab0 (_Z129ExecuteEvents_Execute_TisIPointerClickHandler_t337D40B4F0C87DA190B55BF225ADB716F4ADCA13_mB8A59713F468FB6A061C8A5DF7FF205EE1C9A855P52GameObject_tBD1244AD56B4E59AAD76E5E7C9282EC5CE434F0FP55BaseEventData_t46C9D2AE3183A742EDE89944AF64A23DBF1B80A5P57EventFunction_1_t7BFB6A90DB6AE5607866DE2A89133CA327285B1EPK10MethodInfo ??:? )
+/data/app/com.DefaultCompany.krhook_unity3d-PL6MaRBI5vxhNhVP3URXtA==/lib/arm64/libil2cpp.so/0x7184a03000 + 0x8e4388 (StandaloneInputModule_ProcessTouchPress_m46FBF040EAB0A0F8D832FEB600EF0B9C48E13F61 ??:? )
+/data/app/com.DefaultCompany.krhook_unity3d-PL6MaRBI5vxhNhVP3URXtA==/lib/arm64/libil2cpp.so/0x7184a03000 + 0x8e283c (StandaloneInputModule_ProcessTouchEvents_m74C783AF0B4D517978ECCE3E8A1081F49D174F69 ??:? )
+/data/app/com.DefaultCompany.krhook_unity3d-PL6MaRBI5vxhNhVP3URXtA==/lib/arm64/libil2cpp.so/0x7184a03000 + 0x8e20cc (StandaloneInputModule_Process_mF637455BCED017FB359E090B58F15C490EFD2B54 ??:? )
+/data/app/com.DefaultCompany.krhook_unity3d-PL6MaRBI5vxhNhVP3URXtA==/lib/arm64/libil2cpp.so/0x7184a03000 + 0x34c84c (_ZN18VirtActionInvoker06InvokeEjP12Il2CppObject ??:? )
+/data/app/com.DefaultCompany.krhook_unity3d-PL6MaRBI5vxhNhVP3URXtA==/lib/arm64/libil2cpp.so/0x7184a03000 + 0x8d37e4 (EventSystem_Update_m12CAEF521A10D406D1A6EA01E00DD851683C7208 ??:? )
+/data/app/com.DefaultCompany.krhook_unity3d-PL6MaRBI5vxhNhVP3URXtA==/lib/arm64/libil2cpp.so/0x7184a03000 + 0x368230 (_Z65RuntimeInvoker_TrueVoid_t22962CB4C05B1D89B55A6E1139F0E87A90987017PFvvEPK10MethodInfoPvPS4_ ??:? )
+/data/app/com.DefaultCompany.krhook_unity3d-PL6MaRBI5vxhNhVP3URXtA==/lib/arm64/libil2cpp.so/0x7184a03000 + 0x59ceac (_ZN6il2cpp2vm7Runtime6InvokeEPK10MethodInfoPvPS5_PP15Il2CppException ??:? )
+/data/app/com.DefaultCompany.krhook_unity3d-PL6MaRBI5vxhNhVP3URXtA==/lib/arm64/libil2cpp.so/0x7184a03000 + 0x4fff04 (il2cpp_runtime_invoke ??:? )
+/data/app/com.DefaultCompany.krhook_unity3d-PL6MaRBI5vxhNhVP3URXtA==/lib/arm64/libunity.so/0x7189808000 + 0xc2c1d0 (_Z23scripting_method_invoke18ScriptingMethodPtr18ScriptingObjectPtrR18ScriptingArgumentsP21ScriptingExceptionPtrb ??:? )
+-----------------------------------------
+openat[/product/lib64/libvpsextension.so] dump stack:
+/apex/com.android.runtime/lib64/bionic/libdl.so/0x727a16c000 + 0x1024
+/system/lib64/libgui.so/0x72792d3000 + 0xbfa50
+/system/lib64/libgui.so/0x72792d3000 + 0xbeb08
+/system/lib64/libgui.so/0x72792d3000 + 0xbf8a8
+/system/lib64/libandroid_runtime.so/0x7278bc0000 + 0x11cb94

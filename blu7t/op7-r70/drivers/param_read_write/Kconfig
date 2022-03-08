@@ -1,0 +1,6 @@
+config PARAM_READ_WRITE
+	bool "Param partition read/write support"
+	default n
+	help
+		if you want to read/write the param partition in kernel,
+		then you must say Y here.
