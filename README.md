@@ -36,13 +36,7 @@ sudo apt-get install dos2unix
 sudo apt-get install libncurses5
 ```
 
-3. 编译依赖
-
-```shell
-请参考GitHub CI
-```
-
-4. 编译源码
+3. 编译源码
 
 为了简单方便及稳定,我们基于第三方内核进行修改, [https://github.com/engstk/op7/tree/r70](https://github.com/engstk/op7/tree/r70)
 
@@ -55,7 +49,7 @@ just make
 just j16
 ```
 
-5. 打包image
+4. 打包image
 
 ```shell
 just image
