@@ -139,9 +139,9 @@ openat[/storage/emulated/0/Android/data/com.DefaultCompany.krhook_unity3d/files/
 
 ## 对应工具和链接
 
-[https://github.com/yhnu/op7t/tree/dev/kr_offline](https://github.com/yhnu/op7t/tree/dev/kr_offline)
+[https://github.com/yhnu/op7t/tree/dev/kr_offline](https://github.com/yhnu/op7t/tree/master/kr_offline)
 
-[https://github.com/yhnu/op7t/tree/dev/krhook](https://github.com/yhnu/op7t/tree/dev/krhook)
+[https://github.com/yhnu/op7t/tree/dev/krhook](https://github.com/yhnu/op7t/tree/master/krhook)
 
 [https://github.com/yhnu/op7t/releases](https://github.com/yhnu/op7t/releases)
 
