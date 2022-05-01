@@ -77,3 +77,6 @@ fastboot.exe flash recovery recovery-oneplus7t-3.4.2-10.0-b26.img
 fastboot.exe reboot recovery
 adb sideload F:\F2021-07\one7t_kernel\OnePlus7THydrogen_14.H.09_OTA_009_all_2001030048_d935aae55ac.zip 
 ```
+
+## QA
+wx: yhnu1991
