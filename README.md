@@ -83,4 +83,4 @@ adb sideload F:\F2021-07\one7t_kernel\OnePlus7THydrogen_14.H.09_OTA_009_all_2001
 ```
 
 ## QA
-wx: yhnu1991
+wx: yhnu2023
